@@ -4,7 +4,7 @@ public abstract class Account {
     private String password;
     private double balance;
     private int currentOrderHistory;
-    public static final int MAX_ORDER_HISTORY = 50;
+    public final int MAX_ORDER_HISTORY = 50;
     private Order[] orderHistory;
 
     public Account(String name, String password){
