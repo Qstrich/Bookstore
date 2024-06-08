@@ -17,7 +17,7 @@
     public static final String DESCRIPTION = "Silver membership gives an 8% discount on all items ordered as well as 4 overstocked items equal to or under $20 that the customer has not ordered yet. ";
 
     /*
-     * SilverMember(int issueDay)
+     * SilverMember(int issueDay, int issueMonth, int issueYear, Customer customer)
      * 
      * int issueDay - Day membership was issued.
      * int issueMonth - Month membership was issued.
@@ -26,7 +26,7 @@
      * The constructor initialises all the fields and sets the customer connected
      * to this membership's membership to this object.
      */
-    public SilverMember(int issueDay, int  issueMonth, int issueYear, Customer customer) {
+    public SilverMember(int issueDay, int issueMonth, int issueYear, Customer customer) {
         super(issueDay, issueMonth, issueYear, DISCOUNT, customer, RENEWAL_COST);
         customer.setMembership(this);
     }
@@ -36,8 +36,8 @@
      * Return int - The number of orders made as a special perk. 
      * 
      * int currentOrderNum - Current number of order for order id.
-     * Item[] items - Array of all items of the bookstore  from ItemManager. 
-     * order[] orders - Array of all orders of the booksstore. 
+     * Item[] items - Array of all items of the bookstore from ItemManager. 
+     * order[] orders - Array of all orders of the bookstore. 
      * The method does finds all the items that were previously bought by the customer. 
      * It then goes through the array of items to find any items that were not previously
      * ordered, are overstocked, and equal to or under MAX_PERK_PRICE in price and makes

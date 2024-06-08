@@ -80,6 +80,10 @@
         return product;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getDay() {
         return day;
     }
@@ -107,6 +111,10 @@
 
     public void setProduct(Item product) {
         this.product = product;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setDay(int day) {
