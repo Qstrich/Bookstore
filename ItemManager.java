@@ -4,10 +4,11 @@ public class ItemManager {
     private Item[] items;
 
     public ItemManager(int maxItems) {
-
+        items = new Item[maxItems];
+        currentItemNum = 0;
     }
     public void sortItemAscendingPriceAlpha() {
-
+        
     }
     public void sortItemDescendingPriceAlpha() {
 
@@ -27,8 +28,8 @@ public class ItemManager {
     public void deleteItem(Item i) {
 
     }
-    public boolean addItem(int, String, double, int, String, int, String) {
-
+    public boolean addItem(int id, String name, double price, int stock, String description) {
+        
     }
     public boolean loadFromFile(String fileName) {
 

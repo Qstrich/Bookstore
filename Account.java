@@ -13,6 +13,57 @@ public abstract class Account {
         orderHistory = new Order[MAX_ORDER_HISTORY];
     }
 
+    // Accessors
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public int getCurrentOrderHistory() {
+        return currentOrderHistory;
+    }
+
+    public Order[] getOrderHistory() {
+        return orderHistory;
+    }
+
+    public Order getOrderHistory(int index) {
+        return orderHistory[index];
+    }
+
+    // Mutators
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setCurrentOrderHistory(int currentOrderHistory) {
+        this.currentOrderHistory = currentOrderHistory;
+    }
+
+    public void setOrderHistory(Order[] orderHistory) {
+        this.orderHistory = orderHistory;
+    }
+
+    public void setOrderHistory(int index, Order orderHistory) {
+        this.orderHistory[index] = orderHistory;
+    }
+
+    
     public double compareToName(Account other){
         return name.compareTo(other.name);
     } 

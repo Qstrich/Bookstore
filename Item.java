@@ -15,9 +15,9 @@ public abstract class Item {
     }
     public abstract boolean useItem();
     public boolean enoughStock(int amt) {
-        if amt > stock) {
-        
+        return amt <= stock;
     }
+    public boolean 
 
 
 }
