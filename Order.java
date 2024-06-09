@@ -44,6 +44,7 @@
             ((Customer)buyer).getMembership().isExpired(day, month, year);
         }
 
+        // Set the price before tax
         price = totalCost();
     }
 

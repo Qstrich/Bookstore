@@ -35,7 +35,6 @@ public class Bookstore {
         orders = new Order[MAX_ORDER];
         accountList = new AccountManager(MAX_ACCOUNT);
         itemList = new ItemManager(MAX_ITEM);
-        loadFromFile();
     }
 
     // Accessors
