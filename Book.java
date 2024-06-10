@@ -1,12 +1,14 @@
 
 public class Book extends Item {
-    Public Book(String , String , double, int, String, int) {
-
+    private String author;
+    public Book(String author, String name, double price, int stock, String description, int id) {
+        super(name, price, stock, description, id);
+        this.author = author;
     }
-Constructor for books taking in all fields to declare.
-Public boolean useItem():
-Implements the useItem abstract method from Items
-Public string toString():
-Turns the object into a string and returns it
-
+    public boolean useItem() {
+        return false;
+    }
+    public String toString() {
+        return super.toString() + "\nAuthor " + author;
+    }
 }

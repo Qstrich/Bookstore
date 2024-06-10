@@ -108,16 +108,32 @@ public class BookstoreRunner {
 
                             break;
                         case 13:
+                            // Subscribe to annual membership
                             if (store.getCurrentUser() instanceof Customer) {
+                                int membershipLevel;
+                                int issueDay, issueMonth, issueYear;
+                                // Get inputs for membership information
+                                System.out.print("\nEnter membership tier (1 for Bronze, 2 for Silver, 3 for Gold): ");
+                                membershipLevel = enterInt();
+                                System.out.print("Enter today's day: ");
+                                issueDay = enterInt();
+                                System.out.print("Enter today's month: ");
+                                issueMonth = enterInt();
+                                System.out.print("Enter today's year: ");
+                                issueYear = enterInt();
 
+                                // Create and connect membership
+                                store.subscribeMembership(membershipLevel, issueDay, issueMonth, issueYear);
                             }
+                            // Add item to bookstore
                             else if (store.getCurrentUser() instanceof Employee) {
                                 
                             }
                             break;
                         case 14:
+                            // Renew membership
                             if (store.getCurrentUser() instanceof Customer) {
-
+                                store.renewMembership();
                             }
                     }
                 }
@@ -139,10 +155,27 @@ public class BookstoreRunner {
                     // Run options
                     switch (option) {
                         case 1:
-                        
+                            int qty;
+                            int day, month, year;
+                            System.out.print("\nEnter quantity to order: ");
+                            qty = enterInt();
+                            System.out.print("Enter today's day: ");
+                            day = enterInt();
+                            System.out.print("Enter today's month: ");
+                            month = enterInt();
+                            System.out.print("Enter today's year: ");
+                            year = enterInt();
+
+                            // Print message if order was successful or not
+                            if (store.placeOrder(day, month, year, qty)) {
+                                System.out.print("\nOrder placed successfully.");
+                            }
+                            else {
+                                System.out.print("\nNot enough stock.");
+                            }
                             break;
                         case 2:
-
+                            store.setSelectedItem(null);
                             break;
                         case 3:
                             if (store.getCurrentUser() instanceof Employee) {

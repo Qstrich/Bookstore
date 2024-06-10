@@ -180,7 +180,8 @@ public class Bookstore {
             case 3: 
                 member = new GoldMember(issueDay, issueMonth, issueYear, (Customer)currentUser);
         }
-        // Run the special perk of the membership and change customer balance. 
+        // Set the customer membership and run the special perk of the membership and change customer balance. 
+        ((Customer)currentUser).setMembership(member);
         currentOrderNum += member.specialPerk(currentOrderNum, itemList.getItems(), orders);
         currentUser.setBalance(currentUser.getBalance() - member.getRenewalCost());
 
@@ -238,7 +239,6 @@ public class Bookstore {
             }
         }
         return false;
-
     }
 
     /*
