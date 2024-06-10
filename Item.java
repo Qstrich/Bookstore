@@ -16,6 +16,7 @@ public abstract class Item {
         this.description = description;
         this.id = id;
     }
+    public v
     public abstract boolean useItem();
     public boolean enoughStock(int amt) {
         return amt <= stock;
