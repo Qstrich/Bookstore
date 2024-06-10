@@ -16,7 +16,14 @@ public abstract class Item {
         this.description = description;
         this.id = id;
     }
-    public v
+    public String getName() { return name; }
+    public double getPrice() {return price; }
+    public int getStock() { return stock; }
+    public String getDescription() { return description; }
+    public int getId() {return id;}
+    public void setName(String name) { this.name = name; }
+    public void setD
+
     public abstract boolean useItem();
     public boolean enoughStock(int amt) {
         return amt <= stock;
