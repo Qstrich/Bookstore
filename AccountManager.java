@@ -22,6 +22,20 @@ public class AccountManager {
         }
         return false;
     }
-    
+    public void sortAccounts(){
+
+    }
+    public Account searchAccount(String name){
+
+    } 
+    public void deleteAccount(Account delete){
+
+    }
+    public boolean loadFromFile(String fileName){
+
+    }
+    public boolean saveToFile(String fileName){
+        
+    }
 }
 
