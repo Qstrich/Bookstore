@@ -70,16 +70,16 @@ public class AccountManager {
                         month = Integer.parseInt(reader.readLine());
                         year = Integer.parseInt(reader.readLine());
                         Membership m;
-                        if(memtype==1){
-                            m = new BronzeMember(day, month, year, (Customer)accounts[i]);
-                        }
-                        else if(memtype == 2){
-                            m = new SilverMember(day, month, year, (Customer)accounts[i]);
-
-                        }
-                        else{
-                            m = new GoldMember(day, month, year, (Customer)accounts[i]);
-
+                        switch (memtype) {
+                            case 1:
+                                m = new BronzeMember(day, month, year, (Customer)accounts[i]);
+                                break;
+                            case 2:
+                                m = new SilverMember(day, month, year, (Customer)accounts[i]);
+                                break;
+                            default:
+                                m = new GoldMember(day, month, year, (Customer)accounts[i]);
+                                break;
                         }
                         ((Customer)accounts[i]).setMembership(m);
                     }
