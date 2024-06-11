@@ -286,7 +286,12 @@ public class Bookstore {
 
     public boolean login(String name, String password) {
         Account temp = accountList.searchAccount(name);
-        if(temp != null &&  password =)
+        if(temp != null && temp.getPassword().equals(password)){
+            currentUser = temp;
+            return true;
+        }
+        currentUser = null;
+        return false;
     }
 
     public void logout() {

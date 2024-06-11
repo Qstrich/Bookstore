@@ -128,7 +128,7 @@ public class BookstoreRunner {
                         // Logout of the account
                         case 1:
                             store.logout();
-                            System.out.print("\nLogged out. ")
+                            System.out.print("\nLogged out. ");
                             break;
 
                         // Delete currently logged in account
@@ -148,7 +148,7 @@ public class BookstoreRunner {
                             
                             System.out.print("\nEnter new password: ");
                             password = sc.nextLine();
-                            
+
                             store.getCurrentUser().setPassword(password);
                             break;
                         case 5:
