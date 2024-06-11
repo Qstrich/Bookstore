@@ -86,7 +86,10 @@ public class ItemManager {
         return -1;
     }
     public void deleteItem(Item i) {
-        
+        int getIdx = searchItemIdx(i.getId());
+        if (getIdx == -1) return;
+        item[getIdx] = item[currentItemNum];
+        item[currentItemNum--] = null;
     }
     public boolean addItem(int id, String author, String name, double price, int stock, String description, int type) {
         if (currentItemNum + 1 == maxItems) return false;

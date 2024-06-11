@@ -5,9 +5,13 @@ public class AccountManager {
     private int maxAccounts;
     private int currentAccountNum;
     private Account[] accounts;
+
+    private int lc[], rc[];//bst shit
     public AccountManager(int maxAccounts){
         this.maxAccounts = maxAccounts;
         accounts = new Account[maxAccounts];
+        lc = new int[maxAccounts];
+        rc = new int[maxAccounts];
     }
     public boolean addCustomer(String name, String password){
         if(searchAccount(name)== null && currentAccountNum < maxAccounts){
@@ -25,19 +29,16 @@ public class AccountManager {
         }
         return false;
     }
-    public void sortAccounts(){
-          
-    }
-    public Account searchAccount(String name){
+    public Account searchAccountName(String name){
         
     }     
-    
     public int searchAccount(Account acc){
 
     } 
     public void deleteAccount(Account delete){
         int pos = searchAccount(delete);
         if(pos != -1)accounts[pos] = null;
+        //shift everything up?
     }
     public boolean loadFromFile(String fileName){
         

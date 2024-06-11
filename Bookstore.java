@@ -97,11 +97,11 @@ public class Bookstore {
 
     
     public boolean addCustomer(String name, String password) {
-
+        return accountList.addCustomer(name, password);
     }
 
     public boolean addEmployee(int employeeKey, String name, String password) {
-
+        return accountList.addEmployee(name, password);
     }
 
     public void listItemAscendingPriceAlpha() {
@@ -283,7 +283,7 @@ public class Bookstore {
     }
 
     public boolean login(String name, String password) {
-
+        
     }
 
     public void logout() {
