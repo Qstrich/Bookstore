@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.jar.Attributes;
 
 public class AccountManager {
     private int maxAccounts;
@@ -28,14 +29,15 @@ public class AccountManager {
           
     }
     public Account searchAccount(String name){
-
+        
     }     
     
     public int searchAccount(Account acc){
 
     } 
     public void deleteAccount(Account delete){
-
+        int pos = searchAccount(delete);
+        if(pos != -1)accounts[pos] = null;
     }
     public boolean loadFromFile(String fileName){
         
@@ -48,7 +50,7 @@ public class AccountManager {
 
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             numAccounts = Integer.parseInt(reader.readLine());
             for (int i = 0; i < numAccounts; i++) {
                 // Read all information of the order from file
@@ -67,11 +69,24 @@ public class AccountManager {
                         day = Integer.parseInt(reader.readLine());
                         month = Integer.parseInt(reader.readLine());
                         year = Integer.parseInt(reader.readLine());
+                        Membership m;
+                        if(memtype==1){
+                            m = new BronzeMember(day, month, year, (Customer)accounts[i]);
+                        }
+                        else if(memtype == 2){
+                            m = new SilverMember(day, month, year, (Customer)accounts[i]);
+
+                        }
+                        else{
+                            m = new GoldMember(day, month, year, (Customer)accounts[i]);
+
+                        }
+                        ((Customer)accounts[i]).setMembership(m);
                     }
                 }
                 //Employee
                 else{
-
+                    accounts[i] = new Employee(name, password);
 
                 }
 
@@ -90,7 +105,63 @@ public class AccountManager {
 
 
     public boolean saveToFile(String fileName){
-        
+            
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
+                writer.write("" + currentOrderNum);
+                writer.newLine();
+
+                // Save information of all orders to file
+                for (int i = 0; i < currentOrderNum; i++) {
+                    Account cur = accounts[i];
+                    
+                    if(cur instanceof Employee){
+                        writer.write("1");
+                        writer.newLine();
+                        writer.write(cur.getName());
+                        writer.newLine();                        
+                        writer.write(cur.getPassword());
+                        writer.newLine();                        
+                        writer.write(""+cur.getBalance());
+                        writer.newLine();
+                    }
+                    else{
+                        writer.write("0");
+                        writer.newLine();
+                        writer.write(cur.getName());
+                        writer.newLine();                        
+                        writer.write(cur.getPassword());
+                        writer.newLine();                        
+                        writer.write(""+cur.getBalance());
+                        writer.newLine();
+                        Membership mbr = ((Customer)cur).getMembership();
+                        if(mbr == null){
+                            writer.write("false");
+                            writer.newLine();
+                        }
+                        else{
+                            writer.write("true");
+                            writer.newLine();                            
+                            writer.write(""+mbr.getIssueDay());
+                            writer.newLine();                            
+                            writer.write(""+mbr.getIssueMonth());
+                            writer.newLine();                            
+                            writer.write(""+mbr.getIssueYear());
+                            writer.newLine();
+
+                        }
+                    }
+                   
+                }
+                writer.close();
+
+                return true;
+            } 
+            
+            catch (IOException ioex) {
+            }
+         
+        return false;
     }
 }
 

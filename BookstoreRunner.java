@@ -133,7 +133,13 @@ public class BookstoreRunner {
                         case 14:
                             // Renew membership
                             if (store.getCurrentUser() instanceof Customer) {
-                                store.renewMembership();
+                                // Renew membership or print error message. 
+                                if (((Customer)store.getCurrentUser()).getMembership() != null) {
+                                    store.renewMembership();
+                                }
+                                else {
+                                    System.out.print("\nNo membership to renew. ");
+                                }
                             }
                     }
                 }

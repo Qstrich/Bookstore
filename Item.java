@@ -29,7 +29,10 @@ public abstract class Item {
     public void setStock(int stock) { this.stock = stock; }
     public void setDescription(String description) { this.description = description; }
     public void setId(int id) { this.id = id; }
-
+    /*
+     * public abstract boolean useItem()
+     * this is an abstract method that "uses" the items functionality
+     */
     public abstract boolean useItem();
     public boolean enoughStock(int amt) {
         return amt <= stock;
