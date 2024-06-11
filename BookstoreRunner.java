@@ -31,12 +31,66 @@ public class BookstoreRunner {
 
                 // Do options
                 switch (option) {
+                    // Create a new account
                     case 1: 
+                        int accountType;
+                        String name;
+                        String password;
+                        String key;
+
+                        // Get common variable inputs from user
+                        System.out.print("\nEnter account type (0 for customer, 1 for employee): ");
+                        accountType = enterInt();
+                        System.out.print("\nEnter account name: ");
+                        name = sc.nextLine();
+                        System.out.print("\nEnter password: ");
+                        password = sc.nextLine();
+
+                        // Make employee account
+                        if (accountType == 1) {
+                            System.out.print("\nEnter employee key: ");
+                            key = sc.nextLine();
+                            if (store.addEmployee(key, name, password)) {
+                                System.out.print("\nEmployee account made. ");
+                            }
+                            else {
+                                System.out.print("\nEmployee key wrong or username already used. ");
+                            }
+                        }
+                        // Make customer account
+                        else if (accountType == 0) {
+                            if (store.addCustomer(name, password)) {
+                                System.out.print("\nCustomer account made. ");
+                            }
+                            else {
+                                System.out.print("\nUsername already used. ");
+                            }
+                        }
                         
                         break;
+
+                    // Login to account
                     case 2:
+                        String name;
+                        String password;
+
+                        // Get input for name and password
+                        System.out.print("\nEnter account name: ");
+                        name = sc.nextLine();
+                        System.out.print("\nEnter password: ");
+                        password = sc.nextLine();
+
+                        // Send message for if login was successful or not
+                        if (store.login(name, password)) {
+                            System.out.print("\nLogin successful.");
+                        }
+                        else {
+                            System.out.print("\nPassword or username wrong");
+                        }
 
                         break;
+                    
+                    // Close program
                     case 3:
                         exit = true;
                 }
@@ -71,17 +125,31 @@ public class BookstoreRunner {
 
                     // Run options
                     switch (option) {
+                        // Logout of the account
                         case 1:
-
+                            store.logout();
+                            System.out.print("\nLogged out. ")
                             break;
+
+                        // Delete currently logged in account
                         case 2: 
-
+                            store.deleteCurrentAccount();
+                            System.out.print("\nAccount deleted. ");
                             break;
+                        
+                        // Print logged in account
                         case 3:
-
+                            System.out.print("\n" + store.getCurrentUser());
                             break;
+                        
+                        // Change account password
                         case 4:
-
+                            String password;
+                            
+                            System.out.print("\nEnter new password: ");
+                            password = sc.nextLine();
+                            
+                            store.getCurrentUser().setPassword(password);
                             break;
                         case 5:
 

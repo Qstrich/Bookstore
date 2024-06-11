@@ -100,8 +100,8 @@ public class Bookstore {
         return accountList.addCustomer(name, password);
     }
 
-    public boolean addEmployee(int employeeKey, String name, String password) {
-        return accountList.addEmployee(name, password);
+    public boolean addEmployee(String employeeKey, String name, String password) {
+        return accountList.addEmployee(employeeKey, name, password);
     }
 
     public void listItemAscendingPriceAlpha() {
@@ -244,6 +244,8 @@ public class Bookstore {
     /*
      * boolean saveToFile()
      * Return boolean - If the save was successful. 
+     * 
+     * The method saves all the information of this object into multiple files. 
      */
     public boolean saveToFile() {
         if (accountList.saveToFile(ACCOUNT_FILE) && itemList.saveToFile(ITEM_FILE)) {
@@ -283,7 +285,8 @@ public class Bookstore {
     }
 
     public boolean login(String name, String password) {
-        
+        Account temp = accountList.searchAccount(name);
+        if(temp != null &&  password =)
     }
 
     public void logout() {

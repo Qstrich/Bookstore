@@ -6,16 +6,34 @@ public class AccountManager {
     private int currentAccountNum;
     private Account[] accounts;
 
-    private int lc[], rc[];//bst shit
+    private int lc[], rc[], node, cnt;
     public AccountManager(int maxAccounts){
         this.maxAccounts = maxAccounts;
         accounts = new Account[maxAccounts];
+
+        //bst
         lc = new int[maxAccounts];
         rc = new int[maxAccounts];
+        node = 0;
+        cnt = 0;
+    }
+
+    private void add(int cur, Account ac) {
+        if (accounts[cur] == null) {
+            accounts[cur] = ac;
+            return;
+        }
+        if (accounts[cur].compareToName(ac) < 0) {
+            if (lc[cur] == 0) lc[cur] = ++cnt;
+            add(lc[cur], ac);
+        } else {
+            if (rc[cur] == 0) rc[cur] = ++cnt;
+            add(rc[cur], ac);
+        }
     }
     public boolean addCustomer(String name, String password){
         if(searchAccount(name)== null && currentAccountNum < maxAccounts){
-            accounts[currentAccountNum] = new Customer(name, password);
+            add(0, new Customer(name, password));
             currentAccountNum++;
             return true;
         }
@@ -23,17 +41,27 @@ public class AccountManager {
     }
     public boolean addEmployee(String employeeKey, String name, String password){
         if(employeeKey.equals(Employee.EMPLOYEE_KEY) && searchAccount(name)== null && currentAccountNum < maxAccounts){
-            accounts[currentAccountNum] = new Employee(name, password);
+            add(0, new Employee(name, password));
             currentAccountNum++;
             return true;
         }
         return false;
     }
-    public Account searchAccountName(String name){
-        
+    private int search(int cur, String name) {
+        if (name.equals(accounts[cur].getName())) {
+            
+            return cur;
+        }
+    }
+
+
+    //Actual Search Accounts
+    public Account searchAccount(String name){
+
+        return null;
     }     
     public int searchAccount(Account acc){
-
+        return null;
     } 
     public void deleteAccount(Account delete){
         int pos = searchAccount(delete);
