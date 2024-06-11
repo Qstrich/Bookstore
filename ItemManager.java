@@ -16,23 +16,26 @@ public class ItemManager {
     }
     public void sortItemAscendingPriceAlpha() {
         for (int i = 0; i <= currentItemNum; i++) {
-            int max = i;
+            int min = i;
             for (int j = i + 1; j <= currentItemNum; j++) {
-                if ((item[j].getPrice() == item[max].getPrice() && item[j].getName().compareTo(item[max].getName()) >= 0) || item[j].getPrice() < item[max].getPrice()) {
-                    max = j;
+                if ((item[j].getPrice() == item[min].getPrice() && item[j].getName().compareTo(item[min].getName()) <= 0) || item[j].getPrice() < item[min].getPrice()) {
+                    min = j;
                 }
                 Item temp = item[i];
-                item[i] = item[max];
-                item[max] = temp;
+                item[i] = item[min];
+                item[min] = temp;
             }
         }
     }
     public void sortItemDescendingPriceAlpha() {
         for (int i = 1; i <= currentItemNum; i++) {
-            int max = i;
-            for (int j = i; j > 0; j--) {
-                
+            int min = i;
+            for (int j = i - 1; j >= 0; j--) {
+                if ((item[j].getPrice() == item[min].getPrice() && item[j].getName().compareTo(item[min].getName()) >= 0) || item[j].getPrice() > item[min].getPrice()) {
+                    item[j+1] =  item[j];
+                }
             }
+            item[i] = item[min]; 
         }
     }
     public void listItems() {
