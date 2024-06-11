@@ -11,7 +11,7 @@ public class ItemManager {
     private Item[] item;
 
     public ItemManager(int maxItems) {
-        items = new Item[maxItems];
+        item = new Item[maxItems];
         currentItemNum = 0;
     }
     public void sortItemAscendingPriceAlpha() {
@@ -21,14 +21,19 @@ public class ItemManager {
                 if ((item[j].getPrice() == item[max].getPrice() && item[j].getName().compareTo(item[max].getName()) >= 0) || item[j].getPrice() < item[max].getPrice()) {
                     max = j;
                 }
+                Item temp = item[i];
+                item[i] = item[max];
+                item[max] = temp;
             }
         }
     }
     public void sortItemDescendingPriceAlpha() {
-
-    }
-    public void sortItemName() {
-
+        for (int i = 1; i <= currentItemNum; i++) {
+            int max = i;
+            for (int j = i; j > 0; j--) {
+                
+            }
+        }
     }
     public void listItems() {
         for (int i = 0; i <= currentItemNum; i++) {
