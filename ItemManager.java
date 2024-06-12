@@ -149,7 +149,7 @@ public class ItemManager {
                 bw.write(item[i].getPrice() + ""); bw.newLine();
                 bw.write(item[i].getDescription()); bw.newLine();
                 bw.write(item[i].getStock() + ""); bw.newLine();
-                bw.write(item[i] instanceof Book ? ((Book) item[i]).getAuthor() : item[i].getArtist()); bw.newLine();
+                bw.write(item[i].getMaker()); bw.newLine();
             }
             bw.close();
         } catch (IOException e) {

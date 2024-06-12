@@ -6,6 +6,7 @@ public class Drawing extends Item {
         super(name, price, stock, desciprtion, id);
         this.artist = artist;
     } 
+    public String getMaker() { return artist; }
     public boolean useItem() {
         return false;
     }

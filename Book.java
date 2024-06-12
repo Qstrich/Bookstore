@@ -5,6 +5,7 @@ public class Book extends Item {
         super(name, price, stock, description, id);
         this.author = author;
     }
+    public String getMaker() { return author; } 
     public boolean useItem() {
         return false;
     }

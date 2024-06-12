@@ -85,7 +85,6 @@ public class AccountManager {
         return -1;
     }
     public boolean loadFromFile(String fileName){
-        currentAccountNum = 0;
         int type;
         String name;
         String password;
@@ -93,9 +92,12 @@ public class AccountManager {
         boolean membership;
 
         try {
+            System.out.println("WASFGDH");
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            amt = Integer.parseInt(reader.readLine());
+            System.out.println("HOWO");
+            int amt = Integer.parseInt(reader.readLine());
             for (int i = 0; i < amt; i++) {
+                System.out.println("TEST");
                 // Read all information of the order from file
                 type = Integer.parseInt(reader.readLine());
                 name = reader.readLine();
@@ -104,7 +106,9 @@ public class AccountManager {
                 
                 //Customer
                 if(type == 0){
-                    Account a = new Customer(name, password);
+                    addCustomer(name, password);
+                    Account a = searchAccount(name);
+                    a.setBalance(balance);
                     membership = Boolean.parseBoolean(reader.readLine());
                     if(membership == true){
                         int memtype, day, month, year;    
@@ -135,11 +139,8 @@ public class AccountManager {
             
             }
             reader.close();
-
             return true;
-        }
-
-        catch(IOException ioex) {
+        } catch(IOException ioex) {
         }
     
         return false;
