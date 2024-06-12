@@ -105,15 +105,17 @@ public class Bookstore {
     }
 
     public void listItemAscendingPriceAlpha() {
-
+        itemList.sortItemAscendingPriceAlpha();
+        itemList.listItems();
     }
 
     public void listItemDescendingPriceAlpha() {
-
+        itemList.sortItemDescendingPriceAlpha();;
+        itemList.listItems();
     }
 
     public void listItemsBetweenPrice(double min, double max) {
-
+        itemList.listItemsBetweenPrice(min, max);
     }
 
     /* 
@@ -319,7 +321,7 @@ public class Bookstore {
      */
     public void listOrderHistory() {
         Order[] temp = currentUser.getOrderHistory();
-        for(int i = 0; i< temp.length; i++){
+        for(int i = 0; i< currentUser.getCurrentOrderHistory(); i++){
             System.out.println(i+1);
             System.out.println(temp[i]);
         }

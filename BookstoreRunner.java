@@ -24,7 +24,7 @@ public class BookstoreRunner {
             System.out.print("\nError setting bookstore from files. ");
         }
         */
-        System.out.println(store.getAccountList().loadFromFile("account")); // Only for testing
+        System.out.println(store.loadFromFile()); // Only for testing
         
 
         // Loop menus until close program option is selected. 

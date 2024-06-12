@@ -39,6 +39,6 @@ public abstract class Item {
         return amt <= stock;
     }
     public String toString() {
-        return "Name: " + name + "\nPrice " + price + "\nStock " + stock + "\nDescription " + "\nID: " + id;
+        return "Name: " + name + "\nPrice " + price + "\nStock " + stock + "\nDescription " + description + "\nID: " + id;
     }
 }

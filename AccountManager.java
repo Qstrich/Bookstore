@@ -15,22 +15,9 @@ public class AccountManager {
         lc = new int[maxAccounts];
         rc = new int[maxAccounts];
     }
-    //helper add method bbst
-    private void add(int cur, Account ac) {
-        if (accounts[cur] == null) {
-            accounts[cur] = ac;
-            return;
-        }
-        if (accounts[cur].compareToName(ac) < 0) {
-            if (lc[cur] == 0) lc[cur] = ++currentAccountNum;
-            add(lc[cur], ac);
-        } else {
-            if (rc[cur] == 0) rc[cur] = ++currentAccountNum;
-            add(rc[cur], ac);
-        }
-    }
+    
     public boolean addCustomer(String name, String password){
-        if(searchAccount(name)== null && currentAccountNum < maxAccounts){
+        if(searchAccount(name) == null && currentAccountNum < maxAccounts){
             add(0, new Customer(name, password));
             return true;
         }
@@ -43,22 +30,39 @@ public class AccountManager {
         }
         return false;
     }
+
+    //helper add method bbst
+    private void add(int cur, Account ac) {
+        if (accounts[cur] == null) {
+            accounts[cur] = ac;
+            currentAccountNum++;
+            return;
+        }
+        if (accounts[cur].compareToName(ac) < 0) {
+            if (lc[cur] == 0) lc[cur] = currentAccountNum + 1;
+            add(lc[cur], ac);
+        } else {
+            if (rc[cur] == 0) rc[cur] = currentAccountNum + 1;
+            add(rc[cur], ac);
+        }
+    }
+
+    
     //bbst helper query
     private int search(int cur, String name) {
+        if (accounts[cur] == null) return -1;
         if (name.equals(accounts[cur].getName())) {
+            System.out.println("what" + accounts[cur]);
             return cur;
         }
         if (accounts[cur].getName().compareTo(name) < 0) {
-            if (lc[cur] == 0) return -1;
-            search(lc[cur], name);
+            if (lc[cur] != 0) search(lc[cur], name);
         } else {
-            if (rc[cur] == 0) return -1;
-            search(rc[cur], name);
+            if (rc[cur] != 0) search(rc[cur], name);
         }
         return -1;
     }
 
-    //
     public Account searchAccount(String name){
         int i = search(0, name);
         if (i == -1) return null;
@@ -84,6 +88,9 @@ public class AccountManager {
         if (lc[cur] != 0) return getMaxLeft(lc[cur]);
         return -1;
     }
+
+
+
     public boolean loadFromFile(String fileName){
         int type;
         String name;
@@ -92,12 +99,9 @@ public class AccountManager {
         boolean membership;
 
         try {
-            System.out.println("WASFGDH");
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            System.out.println("HOWO");
             int amt = Integer.parseInt(reader.readLine());
             for (int i = 0; i < amt; i++) {
-                System.out.println("TEST");
                 // Read all information of the order from file
                 type = Integer.parseInt(reader.readLine());
                 name = reader.readLine();
@@ -108,6 +112,7 @@ public class AccountManager {
                 if(type == 0){
                     addCustomer(name, password);
                     Account a = searchAccount(name);
+                    System.out.println(a + " test");
                     a.setBalance(balance);
                     membership = Boolean.parseBoolean(reader.readLine());
                     if(membership == true){
@@ -135,8 +140,6 @@ public class AccountManager {
                 else{
                     addEmployee(Employee.EMPLOYEE_KEY, name, password);
                 }
-
-            
             }
             reader.close();
             return true;

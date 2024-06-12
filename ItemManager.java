@@ -102,7 +102,7 @@ public class ItemManager {
         item[currentItemNum--] = null;
     }
     public boolean addItem(int itemType, String name, double price, int stock, String description, int id, String author) {
-        if (currentItemNum + 1 == maxItems) return false;
+        if (currentItemNum + 1 == maxItems || searchItemIdx(id) != -1) return false;
         if (itemType == 0) {
             item[currentItemNum++] = new Book(author, name, price, stock, description, id);
         } else {
