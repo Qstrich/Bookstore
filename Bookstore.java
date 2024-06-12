@@ -311,7 +311,7 @@ public class Bookstore {
     }
 
     public void selectItem(int option) {
-
+        selectedItem = itemList.getItems(option);
     }
 
     /*
@@ -333,16 +333,17 @@ public class Bookstore {
         currentUser.getOrderHistory(historyNum - 1).getProduct().useItem();
     }
 
-    public boolean deleteItem() {
-        
+    public void deleteItem() {
+        itemList.deleteItem(selectedItem);
+        selectedItem = null;
     }
 
     public void changeItemPrice(double newPrice) {
-
+        selectedItem.setPrice(newPrice);
     }
 
     public void changeItemStock(int newStock) {
-
+        selectedItem.setStock(newStock);
     }
 
 }

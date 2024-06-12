@@ -24,9 +24,9 @@ public class ItemManager {
     }
 
     public void sortItemAscendingPriceAlpha() {
-        for (int i = 0; i <= currentItemNum; i++) {
+        for (int i = 0; i < currentItemNum; i++) {
             int min = i;
-            for (int j = i + 1; j <= currentItemNum; j++) {
+            for (int j = i + 1; j < currentItemNum; j++) {
                 if ((item[j].getPrice() == item[min].getPrice() && item[j].getName().compareTo(item[min].getName()) <= 0) || item[j].getPrice() < item[min].getPrice()) {
                     min = j;
                 }
@@ -37,7 +37,7 @@ public class ItemManager {
         }
     }
     public void sortItemDescendingPriceAlpha() {
-        for (int i = 1; i <= currentItemNum; i++) {
+        for (int i = 1; i < currentItemNum; i++) {
             int min = i;
             for (int j = i - 1; j >= 0; j--) {
                 if ((item[j].getPrice() == item[min].getPrice() && item[j].getName().compareTo(item[min].getName()) >= 0) || item[j].getPrice() > item[min].getPrice()) {
@@ -48,7 +48,7 @@ public class ItemManager {
         }
     }
     public void listItems() {
-        for (int i = 0; i <= currentItemNum; i++) {
+        for (int i = 0; i < currentItemNum; i++) {
             System.out.println(i + 1 + " " + item[i]);
         }
     }
@@ -89,7 +89,7 @@ public class ItemManager {
         return item[i];
     }
     private int searchItemIdx(int id) {
-        for (int i = 0; i <= currentItemNum; i++) {
+        for (int i = 0; i < currentItemNum; i++) {
             if (item[i].getId() == id) return i;
         }
         return -1;
@@ -110,7 +110,7 @@ public class ItemManager {
         return true;
     }
     public boolean loadFromFile(String fileName) {
-        int type;
+        int itemType;
         String name;
         int id;
         double price;
@@ -122,14 +122,14 @@ public class ItemManager {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             currentItemNum = Integer.parseInt(br.readLine());
             for (int i = 0; i <= currentItemNum; i++) {
-                type = Integer.parseInt(br.readLine());
+                itemType = Integer.parseInt(br.readLine());
                 name = br.readLine();
                 id = Integer.parseInt(br.readLine());
                 price = Double.parseDouble(br.readLine());
                 description = br.readLine();
                 stock = Integer.parseInt(br.readLine());
                 author = br.readLine();
-                addItem(id, author, name, price, stock, description, type);
+                addItem(itemType, name, price, stock, description, id, author);
             }
             br.close();
         } catch (IOException e) {
