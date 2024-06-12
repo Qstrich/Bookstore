@@ -76,9 +76,12 @@ public class AccountManager {
         int right = getMinRight(cur); 
         
         if (accounts[left].getName().compareTo(accounts[right].getName()) > 0) {
-            
+            accounts[cur] = accounts[left];
+            accounts[left] = null;    
+        } else {
+            accounts[cur] = accounts[right];
+            accounts[right] = null;
         }
-        //TODO
     }
     public int getMinRight(int cur) {
         if (lc[cur] != 0) return getMinRight(lc[cur]);
