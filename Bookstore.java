@@ -295,19 +295,19 @@ public class Bookstore {
     }
 
     public void logout() {
-
+        currentUser = null;
     }
 
     public void deleteCurrentAccount() {
-
+        accountList.deleteAccount(currentUser);
     }
 
     public void addToBalance(double amount) {
-
+        currentUser.setBalance(currentUser.getBalance() + amount);
     }
 
     public void changePassword(String newPassword) {
-
+        currentUser.setPassword(newPassword);
     }
 
     public void selectItem(int option) {
@@ -318,7 +318,11 @@ public class Bookstore {
      * 
      */
     public void listOrderHistory() {
-
+        Order[] temp = currentUser.getOrderHistory();
+        for(int i = 0; i< temp.length; i++){
+            System.out.println(i+1);
+            System.out.println(temp[i]);
+        }
 
     }
     
@@ -326,11 +330,11 @@ public class Bookstore {
      * 
      */
     public void openItemInHistory(int historyNum) {
-
+        currentUser.getOrderHistory(historyNum - 1).getProduct().useItem();
     }
 
     public boolean deleteItem() {
-
+        
     }
 
     public void changeItemPrice(double newPrice) {

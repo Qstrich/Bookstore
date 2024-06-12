@@ -1,40 +1,37 @@
 import java.io.*;
-import java.util.jar.Attributes;
 
 public class AccountManager {
     private int maxAccounts;
     private int currentAccountNum;
     private Account[] accounts;
 
-    private int lc[], rc[], node, cnt;
+    private int lc[], rc[];
     public AccountManager(int maxAccounts){
         this.maxAccounts = maxAccounts;
         accounts = new Account[maxAccounts];
+        currentAccountNum = 0;
 
         //bst
         lc = new int[maxAccounts];
         rc = new int[maxAccounts];
-        node = 0;
-        cnt = 0;
     }
-
+    //helper add method bbst
     private void add(int cur, Account ac) {
         if (accounts[cur] == null) {
             accounts[cur] = ac;
             return;
         }
         if (accounts[cur].compareToName(ac) < 0) {
-            if (lc[cur] == 0) lc[cur] = ++cnt;
+            if (lc[cur] == 0) lc[cur] = ++currentAccountNum;
             add(lc[cur], ac);
         } else {
-            if (rc[cur] == 0) rc[cur] = ++cnt;
+            if (rc[cur] == 0) rc[cur] = ++currentAccountNum;
             add(rc[cur], ac);
         }
     }
     public boolean addCustomer(String name, String password){
         if(searchAccount(name)== null && currentAccountNum < maxAccounts){
             add(0, new Customer(name, password));
-            currentAccountNum++;
             return true;
         }
         return false;
@@ -42,35 +39,38 @@ public class AccountManager {
     public boolean addEmployee(String employeeKey, String name, String password){
         if(employeeKey.equals(Employee.EMPLOYEE_KEY) && searchAccount(name)== null && currentAccountNum < maxAccounts){
             add(0, new Employee(name, password));
-            currentAccountNum++;
             return true;
         }
         return false;
     }
+    //bbst helper query
     private int search(int cur, String name) {
         if (name.equals(accounts[cur].getName())) {
-            
             return cur;
         }
+        if (name.compareTo(accounts[cur].getName()) < 0) {
+            if (lc[cur] == 0) return -1;
+            search(lc[cur], name);
+        } else {
+            if (rc[cur] == 0) return -1;
+            search(rc[cur], name);
+        }
+        return -1;
     }
 
-
-    //Actual Search Accounts
+    //
     public Account searchAccount(String name){
-
-        return null;
+        int i = search(0, name);
+        if (i == -1) return null;
+        return accounts[i];
     }     
     public int searchAccount(Account acc){
-        return null;
+        return search(0, acc.getName());
     } 
     public void deleteAccount(Account delete){
-        int pos = searchAccount(delete);
-        if(pos != -1)accounts[pos] = null;
-        //shift everything up?
+        
     }
     public boolean loadFromFile(String fileName){
-        
-        int numAccounts;
         int type;
         String name;
         String password;
@@ -80,8 +80,8 @@ public class AccountManager {
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            numAccounts = Integer.parseInt(reader.readLine());
-            for (int i = 0; i < numAccounts; i++) {
+            currentAccountNum = Integer.parseInt(reader.readLine());
+            for (int i = 0; i < currentAccountNum; i++) {
                 // Read all information of the order from file
                 type = Integer.parseInt(reader.readLine());
                 name = reader.readLine();
@@ -116,7 +116,6 @@ public class AccountManager {
                 //Employee
                 else{
                     accounts[i] = new Employee(name, password);
-
                 }
 
             

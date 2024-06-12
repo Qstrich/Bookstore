@@ -14,6 +14,15 @@ public class ItemManager {
         item = new Item[maxItems];
         currentItemNum = 0;
     }
+
+    public Item[] getItems() {
+        return item;
+    }
+
+    public Item getItems(int index) {
+        return item[index];
+    }
+
     public void sortItemAscendingPriceAlpha() {
         for (int i = 0; i <= currentItemNum; i++) {
             int min = i;
@@ -91,9 +100,9 @@ public class ItemManager {
         item[getIdx] = item[currentItemNum];
         item[currentItemNum--] = null;
     }
-    public boolean addItem(int id, String author, String name, double price, int stock, String description, int type) {
+    public boolean addItem(int itemType, String name, double price, int stock, String description, int id, String author) {
         if (currentItemNum + 1 == maxItems) return false;
-        if (type == 0) {
+        if (itemType == 0) {
             item[currentItemNum++] = new Book(author, name, price, stock, description, id);
         } else {
             item[currentItemNum++] = new Book(author, name, price, stock, description, id);
