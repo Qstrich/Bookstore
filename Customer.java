@@ -17,7 +17,8 @@ public class Customer extends Account {
     }
     
     public double getDiscount(){
-        return membership.getDiscountPercent() == null ? 0 : membership.getDiscountPercent();
+        if(membership == null)return 0;
+        else return membership.getDiscountPercent();
     }
 
     public String toString(){
