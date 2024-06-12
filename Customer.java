@@ -17,12 +17,16 @@ public class Customer extends Account {
     }
     
     public double getDiscount(){
-        if(membership == null)return 0;
-        else return membership.getDiscountPercent();
+        if(membership == null) {
+            return 0;
+        }
+        else {
+            return membership.getDiscountPercent();
+        }
     }
 
     public String toString(){
-        return super.toString() + "\nDiscount: "+membership;
+        return super.toString() + "\nDiscount: "+ getDiscount();
     }
 
 
