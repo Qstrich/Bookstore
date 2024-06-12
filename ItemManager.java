@@ -117,11 +117,11 @@ public class ItemManager {
         String description;
         int stock;
         String author;
-        
+        int numItem; 
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
-            currentItemNum = Integer.parseInt(br.readLine());
-            for (int i = 0; i <= currentItemNum; i++) {
+            numItem = Integer.parseInt(br.readLine());
+            for (int i = 0; i < numItem; i++) {
                 itemType = Integer.parseInt(br.readLine());
                 name = br.readLine();
                 id = Integer.parseInt(br.readLine());
@@ -148,7 +148,7 @@ public class ItemManager {
                 bw.write(item[i].getPrice() + ""); bw.newLine();
                 bw.write(item[i].getDescription()); bw.newLine();
                 bw.write(item[i].getStock() + ""); bw.newLine();
-                bw.write(item[i] instanceof Book ? item[i].getAuthor() : item[i].getArtist()); bw.newLine();
+                bw.write(item[i] instanceof Book ? ((Book) item[i]).getAuthor() : item[i].getArtist()); bw.newLine();
             }
             bw.close();
         } catch (IOException e) {

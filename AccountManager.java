@@ -48,7 +48,7 @@ public class AccountManager {
         if (name.equals(accounts[cur].getName())) {
             return cur;
         }
-        if (name.compareTo(accounts[cur].getName()) < 0) {
+        if (accounts[cur].getName().compareTo(name) < 0) {
             if (lc[cur] == 0) return -1;
             search(lc[cur], name);
         } else {
@@ -68,7 +68,7 @@ public class AccountManager {
         return search(0, acc.getName());
     } 
     public void deleteAccount(Account delete){
-        
+        //TODO
     }
     public boolean loadFromFile(String fileName){
         int type;
@@ -76,12 +76,12 @@ public class AccountManager {
         String password;
         double balance;
         boolean membership;
-
+        int numAcc;
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            currentAccountNum = Integer.parseInt(reader.readLine());
-            for (int i = 0; i < currentAccountNum; i++) {
+            numAcc = Integer.parseInt(reader.readLine());
+            for (int i = 0; i < numAcc; i++) {
                 // Read all information of the order from file
                 type = Integer.parseInt(reader.readLine());
                 name = reader.readLine();
@@ -90,7 +90,7 @@ public class AccountManager {
                 
                 //Customer
                 if(type == 0){
-                    accounts[i] = new Customer(name, password);
+                    Account a = new Customer(name, password);
                     membership = Boolean.parseBoolean(reader.readLine());
                     if(membership == true){
                         int memtype, day, month, year;    
@@ -101,21 +101,21 @@ public class AccountManager {
                         Membership m;
                         switch (memtype) {
                             case 1:
-                                m = new BronzeMember(day, month, year, (Customer)accounts[i]);
+                                m = new BronzeMember(day, month, year, (Customer)a);
                                 break;
                             case 2:
-                                m = new SilverMember(day, month, year, (Customer)accounts[i]);
+                                m = new SilverMember(day, month, year, (Customer)a);
                                 break;
                             default:
-                                m = new GoldMember(day, month, year, (Customer)accounts[i]);
+                                m = new GoldMember(day, month, year, (Customer)a);
                                 break;
                         }
-                        ((Customer)accounts[i]).setMembership(m);
+                        ((Customer)a).setMembership(m);
                     }
                 }
                 //Employee
                 else{
-                    accounts[i] = new Employee(name, password);
+                    addEmployee(Employee.EMPLOYEE_KEY, name, password);
                 }
 
             
@@ -136,11 +136,11 @@ public class AccountManager {
             
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
-                writer.write("" + currentOrderNum);
+                writer.write("" + currentAccountNum);
                 writer.newLine();
 
                 // Save information of all orders to file
-                for (int i = 0; i < currentOrderNum; i++) {
+                for (int i = 0; i < currentAccountNum; i++) {
                     Account cur = accounts[i];
                     
                     if(cur instanceof Employee){

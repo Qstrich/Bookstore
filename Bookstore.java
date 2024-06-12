@@ -15,9 +15,9 @@ public class Bookstore {
     public static final int MAX_ITEM = 100;
     public static final int MAX_ORDER = 500;
     private int currentOrderNum;
-    public static final String ACCOUNT_FILE = "account.txt";
-    public static final String ITEM_FILE = "item.txt";
-    public static final String ORDER_FILE = "order.txt";
+    public static final String ACCOUNT_FILE = "account";
+    public static final String ITEM_FILE = "item";
+    public static final String ORDER_FILE = "order";
     private Account currentUser;
     private Item selectedItem;
     private Order[] orders;
@@ -336,6 +336,10 @@ public class Bookstore {
     public void deleteItem() {
         itemList.deleteItem(selectedItem);
         selectedItem = null;
+    }
+
+    public boolean addItem(int itemType, String name, double price, int stock, String description, String maker) {
+        
     }
 
     public void changeItemPrice(double newPrice) {
