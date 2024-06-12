@@ -1,5 +1,14 @@
-
+/*
+ * Account.java
+ * Jimmy Tao
+ * June 8, 2024
+ * A.Y. Jackson S.S.
+ * 
+ * The class contains the fields and methods for the abstract class Account
+ */
 public abstract class Account {
+
+    //Fields
     private String name;
     private String password;
     private double balance;
@@ -7,6 +16,7 @@ public abstract class Account {
     public final int MAX_ORDER_HISTORY = 50;
     private Order[] orderHistory;
 
+    //Constructor
     public Account(String name, String password){
         this.name = name;
         this.password = password;
