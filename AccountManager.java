@@ -31,7 +31,7 @@ public class AccountManager {
         return false;
     }
 
-    //helper add method bbst
+    //helper add method bst
     private void add(int cur, Account ac) {
         if (accounts[cur] == null) {
             accounts[cur] = ac;
@@ -39,26 +39,25 @@ public class AccountManager {
             return;
         }
         if (accounts[cur].compareToName(ac) < 0) {
-            if (lc[cur] == 0) lc[cur] = currentAccountNum + 1;
+            if (lc[cur] == 0) lc[cur] = currentAccountNum;
             add(lc[cur], ac);
         } else {
-            if (rc[cur] == 0) rc[cur] = currentAccountNum + 1;
+            if (rc[cur] == 0) rc[cur] = currentAccountNum;
             add(rc[cur], ac);
         }
     }
 
-    
-    //bbst helper query
+    //bst helper query
     private int search(int cur, String name) {
+        System.out.println(cur + " " + name + " search");
         if (accounts[cur] == null) return -1;
         if (name.equals(accounts[cur].getName())) {
-            System.out.println("what" + accounts[cur]);
+            System.out.println("found " + name);
             return cur;
-        }
-        if (accounts[cur].getName().compareTo(name) < 0) {
-            if (lc[cur] != 0) search(lc[cur], name);
+        } else if (accounts[cur].getName().compareTo(name) < 0) {
+            if (lc[cur] != 0) return search(lc[cur], name);
         } else {
-            if (rc[cur] != 0) search(rc[cur], name);
+            if (rc[cur] != 0) return search(rc[cur], name);
         }
         return -1;
     }
@@ -75,7 +74,10 @@ public class AccountManager {
         int cur = searchAccount(ac);
         int left = getMaxLeft(cur);
         int right = getMinRight(cur); 
-        //if (left.compareTo);
+        
+        if (accounts[left].getName().compareTo(accounts[right].getName()) > 0) {
+            
+        }
         //TODO
     }
     public int getMinRight(int cur) {
@@ -88,8 +90,6 @@ public class AccountManager {
         if (lc[cur] != 0) return getMaxLeft(lc[cur]);
         return -1;
     }
-
-
 
     public boolean loadFromFile(String fileName){
         int type;
@@ -139,6 +139,8 @@ public class AccountManager {
                 //Employee
                 else{
                     addEmployee(Employee.EMPLOYEE_KEY, name, password);
+                    Account a = searchAccount(name);
+                    a.setBalance(balance);
                 }
             }
             reader.close();

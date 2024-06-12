@@ -321,6 +321,7 @@ public class Bookstore {
      */
     public void listOrderHistory() {
         Order[] temp = currentUser.getOrderHistory();
+        System.out.println("\nOrder History");
         for(int i = 0; i< currentUser.getCurrentOrderHistory(); i++){
             System.out.println(i+1);
             System.out.println(temp[i]);

@@ -59,7 +59,7 @@
         }
 
         // Loop through items until all PERK_NUM items are found or the end of the item array is reached
-        for (int i = 0; i < items.length && orderCount < PERK_NUM; i++) {
+        for (int i = 0; i < items.length && items[i] != null && orderCount < PERK_NUM; i++) {
             itemId = items[i].getId();
             for (int j = 0; j < previouslyOrderedItemIds.length; j++) {
                 // Find if the current item was previously purchased

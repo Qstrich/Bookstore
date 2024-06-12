@@ -42,7 +42,7 @@ public class ItemManager {
             int min = i;
             for (int j = i - 1; j >= 0; j--) {
                 if ((item[j].getPrice() == item[min].getPrice() && item[j].getName().compareTo(item[min].getName()) >= 0) || item[j].getPrice() > item[min].getPrice()) {
-                    item[j+1] =  item[j];
+                    item[j+1] =  =item[j];
                 }
             }
             item[i] = item[min]; 

@@ -16,7 +16,14 @@ public abstract class Account {
     public final int MAX_ORDER_HISTORY = 50;
     private Order[] orderHistory;
 
-    //Constructor
+    /*
+     * Account(String name, String password)
+     * 
+     * String name - name of account
+     * String password - password of account
+     * The constructor initialises all fields and sets the array according to the max size.
+     */
+
     public Account(String name, String password){
         this.name = name;
         this.password = password;
@@ -74,10 +81,23 @@ public abstract class Account {
     }
 
     
+    /*
+     * double compareToName()
+     * Return double - Returns the comparison of this name with the other name. 
+     * 
+     * The method compares 2 accounts by their name. 
+     */
     public double compareToName(Account other){
         return name.compareTo(other.name);
     } 
-    
+
+    /*
+     * void addToHistory()
+     * Return void   
+     * 
+     * Order newOrder - An order that was made by the account
+     * The method takes in an Order and adds it to the order history 
+     */
     public void addToHistory(Order newOrder){
         if(currentOrderHistory < MAX_ORDER_HISTORY){
             orderHistory[currentOrderHistory] = newOrder;
