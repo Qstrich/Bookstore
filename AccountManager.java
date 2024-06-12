@@ -67,21 +67,35 @@ public class AccountManager {
     public int searchAccount(Account acc){
         return search(0, acc.getName());
     } 
-    public void deleteAccount(Account delete){
+    public void deleteAccount(Account ac){
+        int cur = searchAccount(ac);
+        int left = getMaxLeft(cur);
+        int right = getMinRight(cur); 
+        //if (left.compareTo);
         //TODO
     }
+    public int getMinRight(int cur) {
+        if (lc[cur] != 0) return getMinRight(lc[cur]);
+        if (rc[cur] != 0) return getMinRight(rc[cur]);
+        return -1;
+    }
+    public int getMaxLeft(int cur) {
+        if (rc[cur] != 0) return getMaxLeft(rc[cur]);
+        if (lc[cur] != 0) return getMaxLeft(lc[cur]);
+        return -1;
+    }
     public boolean loadFromFile(String fileName){
+        currentAccountNum = 0;
         int type;
         String name;
         String password;
         double balance;
         boolean membership;
-        int numAcc;
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            numAcc = Integer.parseInt(reader.readLine());
-            for (int i = 0; i < numAcc; i++) {
+            amt = Integer.parseInt(reader.readLine());
+            for (int i = 0; i < amt; i++) {
                 // Read all information of the order from file
                 type = Integer.parseInt(reader.readLine());
                 name = reader.readLine();
@@ -190,6 +204,14 @@ public class AccountManager {
             }
          
         return false;
+    }
+
+    public String toString() {
+        String format = "\nCurrent number of accounts: " + currentAccountNum + "\nMaximum number of accounts: " + maxAccounts;
+        for (int i = 0; i < currentAccountNum; i++) {
+            format += "\n" + accounts[i] + "\n";
+        }
+        return format;
     }
 }
 

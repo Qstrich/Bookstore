@@ -12,6 +12,7 @@ public class ItemManager {
 
     public ItemManager(int maxItems) {
         item = new Item[maxItems];
+        this.maxItems = maxItems;
         currentItemNum = 0;
     }
 
@@ -155,5 +156,13 @@ public class ItemManager {
             return false;
         }
         return true;
+    }
+
+    public String toString() {
+        String format = "\nCurrent number of items: " + currentItemNum + "\nMaximum number of items: " + maxItems;
+        for (int i = 0; i < currentItemNum; i++) {
+            format += "\n" + item[i] + "\n";
+        }
+        return format;
     }
 }

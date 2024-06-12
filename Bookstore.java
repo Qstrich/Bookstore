@@ -338,16 +338,26 @@ public class Bookstore {
         selectedItem = null;
     }
 
-    public boolean addItem(int itemType, String name, double price, int stock, String description, String maker) {
-        
-    }
-
     public void changeItemPrice(double newPrice) {
         selectedItem.setPrice(newPrice);
     }
 
     public void changeItemStock(int newStock) {
         selectedItem.setStock(newStock);
+    }
+
+    /*
+     * String toString()
+     * Return String - Formatted string of fields. 
+     * 
+     * The method returns a string form of this object.
+     */
+    public String toString() {
+        String format = "\nAccount manager: " + accountList + "\nItem manager: " + itemList + "\n\nOrders\nCurrent number of orders: " + currentOrderNum + "\nMaximum number of orders: " + MAX_ORDER;
+        for (int i = 0; i < currentOrderNum; i++) {
+            format += "\n" + orders[i] + "\n";
+        }
+        return format;
     }
 
 }
