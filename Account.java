@@ -25,7 +25,7 @@ public abstract class Account {
      */
 
     public Account(String name, String password){
-        this.name -= name;
+        this.name = name;
         this.password = password;
         orderHistory = new Order[MAX_ORDER_HISTORY];
     }

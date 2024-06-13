@@ -1,3 +1,4 @@
+import java.io.*;
 
 public class Book extends Item {
     private String author;
@@ -8,17 +9,17 @@ public class Book extends Item {
     public String getMaker() { return author; } 
     public boolean useItem() {
         //TODO
-        System.out.println("\n\nOpening Book of " + name + " by " + author);
-        System.out.println("Description: " + description + "\n");
+        System.out.println("\n\nOpening Book of " + super.getName() + " by " + author);
+        System.out.println("Description: " + super.getDescription() + "\n");
         try {
-            BufferedReader br = new BufferedReader(new FileReader(id + ".txt"));
+            BufferedReader br = new BufferedReader(new FileReader(super.getId() + ".txt"));
             String input = br.readLine();
             while (input != null) {
                 System.out.println(input);
                 input = br.readLine();
             }
             br.close();
-        } catch (IOException) {
+        } catch (IOException e) {
             return false;
         }
         return true;
