@@ -145,7 +145,6 @@ public class BookstoreRunner {
                             store.deleteCurrentAccount();
                             System.out.print("\nAccount deleted. ");
                             break;
-                        
                         // Print logged in account
                         case 3:
                             System.out.print("\n" + store.getCurrentUser());
@@ -332,6 +331,7 @@ public class BookstoreRunner {
                         // Delete currently selected item if account is of an employee
                         case 3:
                             if (store.getCurrentUser() instanceof Employee) {
+
                                 store.deleteItem();
                             }
                             break;
