@@ -17,16 +17,13 @@ public class BookstoreRunner {
         int option;
         boolean exit = false;
         Bookstore store = new Bookstore();
-        /* 
+
         // Load bookstore from file and exit program if it does not load properly
         exit = !store.loadFromFile();
         if (exit) {
             System.out.print("\nError setting bookstore from files. ");
         }
-        */
-        System.out.println(store.loadFromFile()); // Only for testing
         
-
         // Loop menus until close program option is selected. 
         while (!exit) {
 

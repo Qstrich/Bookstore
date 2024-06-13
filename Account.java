@@ -105,8 +105,20 @@ public abstract class Account {
         }
     }
 
+    /*
+     * abstract double getDiscount()
+     * Return double   
+     * 
+     * The method returns the discount for the account based on it's type
+     */
     public abstract double getDiscount();
 
+    /*
+     * String toString()
+     * Return String - Formatted string containing field information. 
+     * 
+     * The method returns the fields of the account in a formatted string. 
+     */
     public String toString(){
         return "Name: "+name+"\nPassword: "+password+"\nBalance: "+balance;
     }

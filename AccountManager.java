@@ -1,21 +1,43 @@
+/*
+ * Account.java
+ * Jimmy Tao, Jason Medeiros 
+ * June 8, 2024
+ * A.Y. Jackson S.S.
+ * 
+ * The class contains the fields and methods for the class AccountManager
+ */
 import java.io.*;
 
 public class AccountManager {
+    //fields
     private int maxAccounts;
     private int currentAccountNum;
     private Account[] accounts;
-
+    //bst helper arrays
     private int lc[], rc[];
+
+    /*
+     * AccountManager(int maxAccounts)
+     * 
+     * int maxAccounts - maximum number of accounts for the array
+     * The constructor initialises all fields and sets the array according to the max size.
+     */
     public AccountManager(int maxAccounts){
         this.maxAccounts = maxAccounts;
         accounts = new Account[maxAccounts];
         currentAccountNum = 0;
 
-        //bst
+        //bst arrays (memory optimization)
         lc = new int[maxAccounts];
         rc = new int[maxAccounts];
     }
     
+    /*
+     * boolean addCustomer(String name, String password)
+     * Return boolean - Returns the comparison of this name with the other name. 
+     * 
+     * The method compares 2 accounts by their name. 
+     */
     public boolean addCustomer(String name, String password){
         if(searchAccount(name) == null && currentAccountNum < maxAccounts){
             add(0, new Customer(name, password));
@@ -31,7 +53,12 @@ public class AccountManager {
         return false;
     }
 
-    //helper add method bst
+    /*
+    *   add(int cur, Account ac)
+    *   
+    *   This method is a recursive method that traverses the binary tree until it has a place to add an item (O(n) worse case, O(logn) average)
+    *   The binary tree is a template bst, with each node having two children, left smaller and right bigger
+    */
     private void add(int cur, Account ac) {
         if (accounts[cur] == null) {
             accounts[cur] = ac;
@@ -47,7 +74,11 @@ public class AccountManager {
         }
     }
 
-    //bst helper query
+    /*
+    *   int search(int cur, String name)
+    *   returns - int (the index of the item to find)
+    *   This method traverses the binary tree,looking for an element with the same usernmae
+    */
     private int search(int cur, String name) {
         System.out.println(cur + " " + name + " search");
         if (accounts[cur] == null) return -1;
@@ -70,28 +101,37 @@ public class AccountManager {
     public int searchAccount(Account acc){
         return search(0, acc.getName());
     } 
+    /* deleteAccount(Account ac)
+     * This method deletes the specified account, traversing the children of the deleted node to find the next best node to replace it
+     */
     public void deleteAccount(Account ac){
         int cur = searchAccount(ac);
+        if (cur == -1) return;
+        if (lc[cur] == 0 && rc[cur] == 0) {
+            accounts[cur] = null;
+        }
+
         int left = getMaxLeft(cur);
         int right = getMinRight(cur); 
         
-        if (accounts[left].getName().compareTo(accounts[right].getName()) > 0) {
+        if (left != cur && (accounts[left].getName().compareTo(accounts[right].getName()) > 0 || right == cur)) {
             accounts[cur] = accounts[left];
             accounts[left] = null;    
-        } else {
+        } else if (right != cur) {
             accounts[cur] = accounts[right];
             accounts[right] = null;
         }
     }
+    /* getMinRight(int cur)
+     * Helper method for delete to find the next biggest element
+     */
     public int getMinRight(int cur) {
         if (lc[cur] != 0) return getMinRight(lc[cur]);
-        if (rc[cur] != 0) return getMinRight(rc[cur]);
-        return -1;
+        return cur;
     }
     public int getMaxLeft(int cur) {
         if (rc[cur] != 0) return getMaxLeft(rc[cur]);
-        if (lc[cur] != 0) return getMaxLeft(lc[cur]);
-        return -1;
+        return cur;
     }
 
     public boolean loadFromFile(String fileName){

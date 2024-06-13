@@ -14,13 +14,13 @@ public class Drawing extends Item {
     public String getMaker() { return artist; }
     /*
     *   boolean useItem()
-    *   
+    *   returns -> boolean
     *   this method uses the functionality of drawings (currently just a description and further functionality was intended if we finsihed early)
     */
     public boolean useItem() {
         System.out.println("Description " + super.getDescription());
 
-        return false;
+        return true;
     }
     /*
     *   String toString()

@@ -35,9 +35,18 @@ public abstract class Item {
      * this is an abstract method that "uses" the items functionality
      */
     public abstract boolean useItem();
+    /*
+    *   boolean enoughStock(int amt)
+    *   returns -> boolean
+    *   this method returns true if there is enough stcok left of the item
+    */
     public boolean enoughStock(int amt) {
         return amt <= stock;
     }
+    /*
+    *   String toString()
+    *   This method returns the string equivilant (all feilds)
+    */
     public String toString() {
         return "Name: " + name + "\nPrice " + price + "\nStock " + stock + "\nDescription " + description + "\nID: " + id;
     }

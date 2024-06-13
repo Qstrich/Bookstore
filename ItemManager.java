@@ -6,24 +6,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ItemManager {
+    //fields
     private int maxItems; 
     private int currentItemNum;
     private Item[] item;
-
+    /*
+    * ItemManager(int maxItems)
+    * Constructor for item manager
+    */
     public ItemManager(int maxItems) {
         item = new Item[maxItems];
         this.maxItems = maxItems;
         currentItemNum = 0;
     }
-
+    //Accesors
     public Item[] getItems() {
         return item;
     }
-
     public Item getItems(int index) {
         return item[index];
     }
-
+    /*
+    * sortItemAscendingPriceAlpha()
+    * sorts the array using selection sort in the ascending order by price then alphabetic order
+    */
     public void sortItemAscendingPriceAlpha() {
         for (int i = 0; i < currentItemNum; i++) {
             int min = i;
@@ -37,6 +43,10 @@ public class ItemManager {
             }
         }
     }
+    /*
+    * sortItemAscendingPriceAlpha()
+    * sorts the array using insertion sort in the descending order by price then alphabetic order
+    */
     public void sortItemDescendingPriceAlpha() {
         for (int i = 1; i < currentItemNum; i++) {
             int min = i;
@@ -48,11 +58,17 @@ public class ItemManager {
             item[i] = item[min]; 
         }
     }
+    /* listItems()
+     * This method lists the item list for the user
+     */
     public void listItems() {
         for (int i = 0; i < currentItemNum; i++) {
             System.out.println(i + 1 + " " + item[i]);
         }
     }
+    /* listItemsBetweenPrice(double l, double r)
+     * This method sorts the array ascending and uses binary search to find the upper and lowerbound of price to display
+     */
     public void listItemsBetweenPrice(double l, double r) {
         sortItemAscendingPriceAlpha();
         int lo = lower_bound(l), hi = upper_bound(r);
@@ -60,6 +76,9 @@ public class ItemManager {
             System.out.println((i + 1) + " " + item[i]);
         }
     }
+    /* int lower_bound(double price)
+     * returns - int (the first index <= )
+     */
     private int lower_bound(double price) {
         int hi = currentItemNum - 1, lo = 0, ans = currentItemNum;
         while (lo <= hi) {
@@ -72,6 +91,7 @@ public class ItemManager {
         } 
         return ans;
     }
+    /
     private int upper_bound(double price) {
         int hi = currentItemNum - 1, lo = 0, ans = currentItemNum;
         while (lo <= hi) {
