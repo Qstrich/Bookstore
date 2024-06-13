@@ -1,4 +1,11 @@
-
+/*
+ * Drawing.java
+ * Jason Medeiros
+ * June 12, 2024
+ * A.Y. Jackson S.S.
+ * 
+ * The class contains the fields and methods for Drawings. 
+ */
 public class Drawing extends Item {
     //fields
     private String artist;

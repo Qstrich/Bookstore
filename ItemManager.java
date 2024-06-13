@@ -4,7 +4,14 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
+/*
+ * ItemManager.java
+ * Jason Medeiros
+ * June 12, 2024
+ * A.Y. Jackson S.S.
+ * 
+ * The class contains the fields and methods for managing items. 
+ */
 public class ItemManager {
     //fields
     private int maxItems; 
