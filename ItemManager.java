@@ -143,9 +143,9 @@ public class ItemManager {
             BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false));
             bw.write(currentItemNum +""); bw.newLine();
             for (int i = 0; i < currentItemNum; i++) {
-                bw.write(item[i].getName() + ""); bw.newLine();
                 bw.write(item[i] instanceof Book ? "0": "1"); bw.newLine();
-                bw.write(item[i].getId()); bw.newLine();
+                bw.write(item[i].getName() + ""); bw.newLine();
+                bw.write(item[i].getId() + ""); bw.newLine();
                 bw.write(item[i].getPrice() + ""); bw.newLine();
                 bw.write(item[i].getDescription()); bw.newLine();
                 bw.write(item[i].getStock() + ""); bw.newLine();

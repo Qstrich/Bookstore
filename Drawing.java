@@ -8,6 +8,7 @@ public class Drawing extends Item {
     } 
     public String getMaker() { return artist; }
     public boolean useItem() {
+        //TODO
         return false;
     }
     public String toString() {

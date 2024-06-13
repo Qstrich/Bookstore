@@ -313,7 +313,7 @@ public class Bookstore {
     }
 
     public void selectItem(int option) {
-        selectedItem = itemList.getItems(option);
+        selectedItem = itemList.getItems(option - 1);
     }
 
     /*

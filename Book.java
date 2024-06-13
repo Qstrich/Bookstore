@@ -7,7 +7,21 @@ public class Book extends Item {
     }
     public String getMaker() { return author; } 
     public boolean useItem() {
-        return false;
+        //TODO
+        System.out.println("\n\nOpening Book of " + name + " by " + author);
+        System.out.println("Description: " + description + "\n");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(id + ".txt"));
+            String input = br.readLine();
+            while (input != null) {
+                System.out.println(input);
+                input = br.readLine();
+            }
+            br.close();
+        } catch (IOException) {
+            return false;
+        }
+        return true;
     }
     public String toString() {
         return super.toString() + "\nAuthor " + author;
