@@ -40,7 +40,7 @@
         this.qty = qty;
 
         // Update the buyer membership status if it is a Customer account.
-        if (buyer instanceof Customer) {
+        if (buyer instanceof Customer && ((Customer)buyer).getMembership() != null) {
             ((Customer)buyer).getMembership().isExpired(day, month, year);
         }
 

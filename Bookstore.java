@@ -110,7 +110,7 @@ public class Bookstore {
     }
 
     public void listItemDescendingPriceAlpha() {
-        itemList.sortItemDescendingPriceAlpha();;
+        itemList.sortItemDescendingPriceAlpha();
         itemList.listItems();
     }
 
@@ -302,6 +302,7 @@ public class Bookstore {
 
     public void deleteCurrentAccount() {
         accountList.deleteAccount(currentUser);
+        logout();
     }
 
     public void addToBalance(double amount) {

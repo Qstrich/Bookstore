@@ -28,7 +28,7 @@ public class BookstoreRunner {
         while (!exit) {
 
             System.out.println(store); // Delete after testing
-            
+            System.out.println("___________________________________________________________");
             // Login menu
             if (store.getCurrentUser() == null) {
                 // Print menu options
@@ -110,7 +110,7 @@ public class BookstoreRunner {
                     System.out.println("4. Change account password");
                     System.out.println("5. Add money to balance");
                     System.out.println("6. List items in ascending price then alphabetical order");
-                    System.out.println("7. List items in descending order then alphabetical order");
+                    System.out.println("7. List items in descending price then alphabetical order");
                     System.out.println("8. List items ascending price then alphabetical order between two prices");
                     System.out.println("9. Select item by item number");
                     System.out.println("10. List order history");

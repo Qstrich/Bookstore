@@ -49,13 +49,13 @@ public class ItemManager {
     */
     public void sortItemDescendingPriceAlpha() {
         for (int i = 1; i < currentItemNum; i++) {
-            int min = i;
+            Item temp = item[i];
             for (int j = i - 1; j >= 0; j--) {
-                if ((item[j].getPrice() == item[min].getPrice() && item[j].getName().compareTo(item[min].getName()) >= 0) || item[j].getPrice() > item[min].getPrice()) {
+                if ((item[j].getPrice() == temp.getPrice() && item[j].getName().compareTo(temp.getName()) >= 0) || item[j].getPrice() > temp.getPrice()) {
                     item[j+1] = item[j];
                 }
             }
-            item[i] = item[min]; 
+            item[i] = temp; 
         }
     }
     /* listItems()
@@ -72,12 +72,14 @@ public class ItemManager {
     public void listItemsBetweenPrice(double l, double r) {
         sortItemAscendingPriceAlpha();
         int lo = lower_bound(l), hi = upper_bound(r);
-        for (int i = lo; i <= hi; i++) {
+        if(lo == hi) { System.out.println("There are no items"); return;}
+        for (int i = lo; i < hi; i++) {
             System.out.println((i + 1) + " " + item[i]);
         }
     }
     /* int lower_bound(double price)
-     * returns - int (the first index <= )
+     * returns - int (the first index)
+     * This method returns the index of the lowerbound
      */
     private int lower_bound(double price) {
         int hi = currentItemNum - 1, lo = 0, ans = currentItemNum;
@@ -91,7 +93,11 @@ public class ItemManager {
         } 
         return ans;
     }
-    /
+    /*  int upper_bound(double price)
+     *  double - price (the price to look for)
+     *  return int - the upperbound of price
+     *  This method returns the upperbound of price
+     */
     private int upper_bound(double price) {
         int hi = currentItemNum - 1, lo = 0, ans = currentItemNum;
         while (lo <= hi) {
@@ -104,23 +110,44 @@ public class ItemManager {
         }
         return ans;
     }
+    /*  Item searchItem(int id) 
+     *  This method searches for the item using id
+     */
     public Item searchItem(int id) {
         int i = searchItemIdx(id);
         if (i == -1) return null;
         return item[i];
     }
+    /* int searchItemIdx(int id) 
+     * This method uses sequential search to find the item
+     */
     private int searchItemIdx(int id) {
         for (int i = 0; i < currentItemNum; i++) {
             if (item[i].getId() == id) return i;
         }
         return -1;
     }
+    /* deleteItem(Item i)
+     * Item i - the item to delete
+     * This method deletes the specified item
+     */
     public void deleteItem(Item i) {
         int getIdx = searchItemIdx(i.getId());
         if (getIdx == -1) return;
         item[getIdx] = item[currentItemNum];
         item[currentItemNum--] = null;
     }
+    /* boolean addItem(int itemType, String name, double price, int stock, String description, int id, String author)
+     * int itemType - the type of item, book ro 
+     * String name - the name of the item
+     * double price - the price of the item
+     * int stock - how much of the item is left
+     * String description - the desscipriotn of the item
+     * int id - the id of the item
+     * String author - the maker of the item (author/artist)
+     * returns boolean - if added the item was successful
+     * This method creates an item intializing all feilds
+     */
     public boolean addItem(int itemType, String name, double price, int stock, String description, int id, String author) {
         if (currentItemNum + 1 == maxItems || searchItemIdx(id) != -1) return false;
         if (itemType == 0) {
@@ -130,6 +157,10 @@ public class ItemManager {
         }
         return true;
     }
+    /* boolean loadFromFile(String fileName)
+     * return boolean - returns if its successful
+     * This method fills in the item array using the file
+     */
     public boolean loadFromFile(String fileName) {
         int itemType;
         String name;
@@ -158,6 +189,9 @@ public class ItemManager {
         }
         return true;
     }
+    /*  boolean saveToFile(String fileName)
+     *  
+     */
     public boolean saveToFile(String fileName) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false));

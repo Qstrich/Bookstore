@@ -80,10 +80,8 @@ public class AccountManager {
     *   This method traverses the binary tree,looking for an element with the same usernmae
     */
     private int search(int cur, String name) {
-        System.out.println(cur + " " + name + " search");
         if (accounts[cur] == null) return -1;
         if (name.equals(accounts[cur].getName())) {
-            System.out.println("found " + name);
             return cur;
         } else if (accounts[cur].getName().compareTo(name) < 0) {
             if (lc[cur] != 0) return search(lc[cur], name);
@@ -105,6 +103,7 @@ public class AccountManager {
      * This method deletes the specified account, traversing the children of the deleted node to find the next best node to replace it
      */
     public void deleteAccount(Account ac){
+        currentAccountNum--;
         int cur = searchAccount(ac);
         if (cur == -1) return;
         if (lc[cur] == 0 && rc[cur] == 0) {
@@ -123,12 +122,15 @@ public class AccountManager {
         }
     }
     /* getMinRight(int cur)
-     * Helper method for delete to find the next biggest element
+     * Helper method for delete to find the next biggest element in the left subtree
      */
     public int getMinRight(int cur) {
         if (lc[cur] != 0) return getMinRight(lc[cur]);
         return cur;
     }
+    /* getMinRight(int cur)
+     * Helper method for delete to find the next biggest element in the right subtree
+     */
     public int getMaxLeft(int cur) {
         if (rc[cur] != 0) return getMaxLeft(rc[cur]);
         return cur;
