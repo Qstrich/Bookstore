@@ -95,11 +95,28 @@ public class Bookstore {
         this.itemList = itemList;
     }
 
-    
+     /* 
+     * boolean addCustomer(String name, String password) 
+     * Return boolean - If the customer was added successfully. 
+     * 
+     * String name - name of Customer
+     * String password - password of Customer
+     * This method adds a Customer to the accountManager
+     */
     public boolean addCustomer(String name, String password) {
         return accountList.addCustomer(name, password);
     }
 
+ 
+    /* 
+     * boolean addEmployee(String employeeKey, String name, String password) 
+     * Return boolean - If the employee was added successfully.
+     *  
+     * String employeeKey - employeekey that the user enters
+     * String name - name of Customer
+     * String password - password of Customer
+     * This method adds an Employee to the accountManager
+     */
     public boolean addEmployee(String employeeKey, String name, String password) {
         return accountList.addEmployee(employeeKey, name, password);
     }
@@ -314,11 +331,21 @@ public class Bookstore {
         currentUser = null;
         return false;
     }
-
+    /* 
+     * void logout()
+     * Return void
+     *  
+     * This method logs out of the account by setting currentUser to null
+     */
     public void logout() {
         currentUser = null;
     }
-
+    /* 
+     * void deleteCurrentAccount()
+     * Return void
+     *  
+     * This method deletes the current account
+     */
     public void deleteCurrentAccount() {
         accountList.deleteAccount(currentUser);
         logout();
