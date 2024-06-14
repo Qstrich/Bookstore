@@ -110,8 +110,10 @@ public class AccountManager {
             accounts[cur] = null;
         }
 
-        int left = getMaxLeft(cur);
-        int right = getMinRight(cur); 
+        int left = getMaxLeft(lc[cur]);
+        int right = getMinRight(rc[cur]); 
+        if (left == 0) left = cur;
+        if (right == 0) right = cur;
         
         if (left != cur && (accounts[left].getName().compareTo(accounts[right].getName()) > 0 || right == cur)) {
             accounts[cur] = accounts[left];
@@ -122,7 +124,7 @@ public class AccountManager {
         }
     }
     /* getMinRight(int cur)
-     * Helper method for delete to find the next biggest element in the left subtree
+     * Helper method for delete to find the next smallest element in the left subtree
      */
     public int getMinRight(int cur) {
         if (lc[cur] != 0) return getMinRight(lc[cur]);
