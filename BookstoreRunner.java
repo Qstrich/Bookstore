@@ -28,7 +28,7 @@ public class BookstoreRunner {
         while (!exit) {
 
             //System.out.println(store); // Delete after testing
-            System.out.println("___________________________________________________________");
+            System.out.println("\n\n___________________________________________________________\n\n");
             // Login menu
             if (store.getCurrentUser() == null) {
                 // Print menu options
@@ -104,6 +104,7 @@ public class BookstoreRunner {
             // Main store menu
             else {
                 if (store.getSelectedItem() == null) {
+                    System.out.println("\n\n___________________________________________________________\n\n");
                     System.out.println("\n1. Logout");
                     System.out.println("2. Delete account");
                     System.out.println("3. Print account information");

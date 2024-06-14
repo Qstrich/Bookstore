@@ -157,7 +157,6 @@ public class AccountManager {
                 if(type == 0){
                     addCustomer(name, password);
                     Account a = searchAccount(name);
-                    System.out.println(a + " test");
                     a.setBalance(balance);
                     membership = Boolean.parseBoolean(reader.readLine());
                     if(membership == true){

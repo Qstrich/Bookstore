@@ -226,11 +226,13 @@ public class Bookstore {
 
                     // Find the item and account associated with this order
                     buyer = accountList.searchAccount(accountName);
-                    product = itemList.searchItem(itemId);
+                    if (buyer != null) {
+                        product = itemList.searchItem(itemId);
 
-                    // Construct and add order into array
-                    orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
-                    buyer.addToHistory(orders[i]);
+                        // Construct and add order into array
+                        orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
+                        buyer.addToHistory(orders[i]);
+                    }
                 }
                 reader.close();
 
