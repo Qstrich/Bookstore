@@ -91,14 +91,28 @@ public class AccountManager {
         return -1;
     }
 
+    /*
+     * Account searchAccount(String name)
+     * Return account - Account with the name
+     * 
+     * The method returns the account with the given name
+     */
     public Account searchAccount(String name){
         int i = search(0, name);
         if (i == -1) return null;
         return accounts[i];
-    }     
+    }  
+
+    /*
+     * int searchAccount(Account acc)
+     * Return int - the index of the given Account
+     * 
+     * The method returns the int with the given Account
+     */
     public int searchAccount(Account acc){
         return search(0, acc.getName());
     } 
+    
     /* deleteAccount(Account ac)
      * This method deletes the specified account, traversing the children of the deleted node to find the next best node to replace it
      */
