@@ -95,11 +95,28 @@ public class Bookstore {
         this.itemList = itemList;
     }
 
-    
+     /* 
+     * boolean addCustomer(String name, String password) 
+     * Return boolean - If the customer was added successfully. 
+     * 
+     * String name - name of Customer
+     * String password - password of Customer
+     * This method adds a Customer to the accountManager
+     */
     public boolean addCustomer(String name, String password) {
         return accountList.addCustomer(name, password);
     }
 
+ 
+    /* 
+     * boolean addEmployee(String employeeKey, String name, String password) 
+     * Return boolean - If the employee was added successfully.
+     *  
+     * String employeeKey - employeekey that the user enters
+     * String name - name of Customer
+     * String password - password of Customer
+     * This method adds an Employee to the accountManager
+     */
     public boolean addEmployee(String employeeKey, String name, String password) {
         return accountList.addEmployee(employeeKey, name, password);
     }
@@ -226,11 +243,11 @@ public class Bookstore {
 
                     // Find the item and account associated with this order
                     buyer = accountList.searchAccount(accountName);
-                    if (buyer != null) {
-                        product = itemList.searchItem(itemId);
+                    product = itemList.searchItem(itemId);
 
-                        // Construct and add order into array
-                        orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
+                    // Construct and add order into array
+                    orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
+                    if (buyer != null) {
                         buyer.addToHistory(orders[i]);
                     }
                 }
@@ -268,13 +285,30 @@ public class Bookstore {
                     writer.newLine();
                     writer.write("" + orders[i].getYear());
                     writer.newLine();
-                    writer.write("" + orders[i].getProduct().getId());
+
+                    // Write item id depending on if item was previously deleted
+                    Item product = orders[i].getProduct();
+                    if (product == null) {
+                        writer.write("-1");   
+                    }
+                    else {
+                        writer.write("" + product.getId());
+                    }
                     writer.newLine();
+                 
                     writer.write("" + orders[i].getQty());
                     writer.newLine();
                     writer.write("" + orders[i].getPrice());
                     writer.newLine();
-                    writer.write(orders[i].getBuyer().getName());
+
+                    // Write buyer name depending on if the account was previously deleted or not
+                    Account Buyer = orders[i].getBuyer();
+                    if (Buyer == null) {
+                        writer.write("null");   
+                    }
+                    else {
+                        writer.write(Buyer.getName());
+                    }
                     writer.newLine();
                 }
                 writer.close();
@@ -297,20 +331,43 @@ public class Bookstore {
         currentUser = null;
         return false;
     }
-
+    /* 
+     * void logout()
+     * Return void
+     *  
+     * This method logs out of the account by setting currentUser to null
+     */
     public void logout() {
         currentUser = null;
     }
-
+    /* 
+     * void deleteCurrentAccount()
+     * Return void
+     *  
+     * This method deletes the current account
+     */
     public void deleteCurrentAccount() {
         accountList.deleteAccount(currentUser);
         logout();
     }
-
+    /* 
+     * void addToBalance(double amount) 
+     * Return void
+     *  
+     * double amount - amount of money to add to the balance of the current account
+     * This method adds money to the current account
+     */
     public void addToBalance(double amount) {
         currentUser.setBalance(currentUser.getBalance() + amount);
     }
-
+ 
+    /* 
+     * void changePassword(String newPassword) 
+     * Return void
+     *  
+     * String newPassword - New password to change
+     * This method changes the current password of the current account
+     */
     public void changePassword(String newPassword) {
         currentUser.setPassword(newPassword);
     }

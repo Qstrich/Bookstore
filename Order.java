@@ -143,7 +143,7 @@
      * double totalCost()
      * Return double - Total calculated costs including any account discounts but excluding tax. 
      * 
-     * The method calculates the total cost of the order before tax. 
+     * The method calculates the total cost of the order before tax. Only works if product and buyer are not null. 
      */
     public double totalCost() {
         return (product.getPrice() * qty)*(1 - 0.01 * buyer.getDiscount());
@@ -153,7 +153,7 @@
      * String toString()
      * Return String - Formatted string containing field information. 
      * 
-     * The method returns the fields of the order in a formatted string. 
+     * The method returns the fields of the order in a formatted string. Only works if product and buyer are not null. 
      */
     public String toString() {
         return "Ordered by: " + buyer.getName() + "\nOrdered item: " + product.getName()
