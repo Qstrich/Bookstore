@@ -287,7 +287,7 @@ public class Bookstore {
         }
         return false;
     }
-
+//help
     public boolean login(String name, String password) {
         Account temp = accountList.searchAccount(name);
         if(temp != null && temp.getPassword().equals(password)){
