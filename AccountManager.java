@@ -253,7 +253,17 @@ public class AccountManager {
                             }
                             else{
                                 writer.write("true");
-                                writer.newLine();                            
+                                writer.newLine(); 
+                                if (mbr instanceof BronzeMember) {
+                                    writer.write("1");
+                                }   
+                                else if (mbr instanceof SilverMember) {
+                                    writer.write("2");
+                                }   
+                                else if (mbr instanceof GoldMember) {
+                                    writer.write("3");
+                                }    
+                                writer.newLine();
                                 writer.write(""+mbr.getIssueDay());
                                 writer.newLine();                            
                                 writer.write(""+mbr.getIssueMonth());
