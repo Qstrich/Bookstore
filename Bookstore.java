@@ -350,11 +350,24 @@ public class Bookstore {
         accountList.deleteAccount(currentUser);
         logout();
     }
-
+    /* 
+     * void addToBalance(double amount) 
+     * Return void
+     *  
+     * double amount - amount of money to add to the balance of the current account
+     * This method adds money to the current account
+     */
     public void addToBalance(double amount) {
         currentUser.setBalance(currentUser.getBalance() + amount);
     }
-
+ 
+    /* 
+     * void changePassword(String newPassword) 
+     * Return void
+     *  
+     * String newPassword - New password to change
+     * This method changes the current password of the current account
+     */
     public void changePassword(String newPassword) {
         currentUser.setPassword(newPassword);
     }
