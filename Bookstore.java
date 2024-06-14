@@ -120,17 +120,23 @@ public class Bookstore {
     public boolean addEmployee(String employeeKey, String name, String password) {
         return accountList.addEmployee(employeeKey, name, password);
     }
-
+    /* listItemAscendingPriceAlpha()
+     * This method lists the items in ascending order by first price, then name
+     */
     public void listItemAscendingPriceAlpha() {
         itemList.sortItemAscendingPriceAlpha();
         itemList.listItems();
     }
-
+    /* listItemDescendingPriceAlpha() 
+     * This method lists the items in descneding order by first price, then ascending name
+     */
     public void listItemDescendingPriceAlpha() {
         itemList.sortItemDescendingPriceAlpha();
         itemList.listItems();
     }
-
+    /* listItemsBetweenPrice(double min, double max)
+     * This method lists the items in between the min and max given
+     */
     public void listItemsBetweenPrice(double min, double max) {
         itemList.listItemsBetweenPrice(min, max);
     }
@@ -321,7 +327,9 @@ public class Bookstore {
         }
         return false;
     }
-//help
+    /* boolean login(String name, String password)
+     * This method checks if the information matches and logs in. 
+     */
     public boolean login(String name, String password) {
         Account temp = accountList.searchAccount(name);
         if(temp != null && temp.getPassword().equals(password)){
@@ -371,13 +379,16 @@ public class Bookstore {
     public void changePassword(String newPassword) {
         currentUser.setPassword(newPassword);
     }
-
+    /* selectItem(int option)
+     * 
+     * This method selects the item sepcificed by idx
+     */
     public void selectItem(int option) {
         selectedItem = itemList.getItems(option - 1);
     }
 
-    /*
-     * 
+    /* listOrderHistory()
+     *  This method lists the order history of the current user
      */
     public void listOrderHistory() {
         Order[] temp = currentUser.getOrderHistory();
@@ -389,22 +400,28 @@ public class Bookstore {
 
     }
     
-    /*
-     * 
+    /*  openItemInHistory(int historyNum)
+     *  This method opens the item in the history by idx
      */
     public void openItemInHistory(int historyNum) {
         currentUser.getOrderHistory(historyNum - 1).getProduct().useItem();
     }
-
+    /* deleteItem()
+     *  This method deletes the selected item
+     */
     public void deleteItem() {
         itemList.deleteItem(selectedItem);
         selectedItem = null;
     }
-
+    /*   changeItemPrice(double newPrice)
+     *  This method changes the selected items price
+     */
     public void changeItemPrice(double newPrice) {
         selectedItem.setPrice(newPrice);
     }
-
+    /*   changeItemStock(int newStock)
+     *  This method changes the selected items stock
+     */
     public void changeItemStock(int newStock) {
         selectedItem.setStock(newStock);
     }
