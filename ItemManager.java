@@ -33,6 +33,9 @@ public class ItemManager {
     public Item getItems(int index) {
         return item[index];
     }
+    public int getCurrentItemNum() {
+        return currentItemNum;
+    }
     /*
     * sortItemAscendingPriceAlpha()
     * sorts the array using selection sort in the ascending order by price then alphabetic order
