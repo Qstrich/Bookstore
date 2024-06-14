@@ -194,10 +194,14 @@ public class AccountManager {
     
         return false;
     }
-
+    private void testDisplay() {
+        for (int i = 0; i < currentAccountNum; i++) {
+            System.out.println(accounts[i].getName() + " " + i + " " + lc[i] + " " + rc[i]);
+        }
+    }
 
     public boolean saveToFile(String fileName){
-            
+            testDisplay();
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
                 writer.write("" + currentAccountNum);
