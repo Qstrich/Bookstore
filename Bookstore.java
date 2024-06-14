@@ -226,11 +226,11 @@ public class Bookstore {
 
                     // Find the item and account associated with this order
                     buyer = accountList.searchAccount(accountName);
-                    if (buyer != null) {
-                        product = itemList.searchItem(itemId);
+                    product = itemList.searchItem(itemId);
 
-                        // Construct and add order into array
-                        orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
+                    // Construct and add order into array
+                    orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
+                    if (buyer != null) {
                         buyer.addToHistory(orders[i]);
                     }
                 }
@@ -268,13 +268,30 @@ public class Bookstore {
                     writer.newLine();
                     writer.write("" + orders[i].getYear());
                     writer.newLine();
-                    writer.write("" + orders[i].getProduct().getId());
+
+                    // Write item id depending on if item was previously deleted
+                    Item product = orders[i].getProduct();
+                    if (product == null) {
+                        writer.write("-1");   
+                    }
+                    else {
+                        writer.write("" + product.getId());
+                    }
                     writer.newLine();
+                 
                     writer.write("" + orders[i].getQty());
                     writer.newLine();
                     writer.write("" + orders[i].getPrice());
                     writer.newLine();
-                    writer.write(orders[i].getBuyer().getName());
+
+                    // Write buyer name depending on if the account was previously deleted or not
+                    Account Buyer = orders[i].getBuyer();
+                    if (Buyer == null) {
+                        writer.write("null");   
+                    }
+                    else {
+                        writer.write(Buyer.getName());
+                    }
                     writer.newLine();
                 }
                 writer.close();
