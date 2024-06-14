@@ -233,9 +233,12 @@ public class BookstoreRunner {
 
                             System.out.print("\nEnter order history number to open its item: ");
                             historyNum = enterInt();
-
-                            store.openItemInHistory(historyNum);
-
+                            if(historyNum > 0 && historyNum <= store.getCurrentAccount().getCurrentOrderHistory()){
+                                store.openItemInHistory(historyNum);
+                            }
+                            else{
+                                System.out.println("Invalid input");
+                            }
                             break;
                         
                         // Save bookstore information to file
