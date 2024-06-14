@@ -1,5 +1,12 @@
 import java.io.*;
-
+/*
+ * Book.java
+ * Jason Medeiros
+ * June 12, 2024
+ * A.Y. Jackson S.S.
+ * 
+ * The class contains the fields and methods for Book Items. 
+ */
 public class Book extends Item {
     //fields
     private String author;

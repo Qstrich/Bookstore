@@ -77,7 +77,7 @@ public class AccountManager {
     /*
     *   int search(int cur, String name)
     *   returns - int (the index of the item to find)
-    *   This method traverses the binary tree,looking for an element with the same usernmae
+    *   This method traverses the binary tree, looking for an element with the same usernmae
     */
     private int search(int cur, String name) {
         if (accounts[cur] == null) return -1;

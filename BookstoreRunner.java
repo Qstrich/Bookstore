@@ -27,7 +27,7 @@ public class BookstoreRunner {
         // Loop menus until close program option is selected. 
         while (!exit) {
 
-            System.out.println(store); // Delete after testing
+            //System.out.println(store); // Delete after testing
             System.out.println("___________________________________________________________");
             // Login menu
             if (store.getCurrentUser() == null) {
@@ -283,7 +283,7 @@ public class BookstoreRunner {
                 }
                 // Item menu
                 else {
-                    System.out.println("\n1. Place order ons selected item");
+                    System.out.println("\n1. Place order on selected item");
                     System.out.println("2. Deselect item");
 
                     // Print options only available for Employee type accounts
@@ -357,6 +357,8 @@ public class BookstoreRunner {
                 }
             }
         }
+        //Update the files when the program terminates
+        store.saveToFile();
     }
 
     /*
