@@ -146,7 +146,10 @@
      * The method calculates the total cost of the order before tax. Only works if product and buyer are not null. 
      */
     public double totalCost() {
-        return (product.getPrice() * qty)*(1 - 0.01 * buyer.getDiscount());
+        if (product != null && buyer != null) {
+            return (product.getPrice() * qty)*(1 - 0.01 * buyer.getDiscount());
+        }
+        return 0;
     }
 
     /*
@@ -156,8 +159,24 @@
      * The method returns the fields of the order in a formatted string. Only works if product and buyer are not null. 
      */
     public String toString() {
-        return "Ordered by: " + buyer.getName() + "\nOrdered item: " + product.getName()
-        + "\nOrder ID: " + id + "\nOrdered date (dd/mm/yyyy): " + day + "/" + month + "/" + year
-        + "\nQuantity purchased: " + qty + "\nPrice before tax: " + price + "\nPrice after tax: " + (price * (1 + 0.01 * TAX)); 
+        String format = "Ordered by: ";
+        if (buyer != null) {
+            format += buyer.getName();
+        }
+        else {
+            format += "Deleted account";
+        }
+        format += "\nOrdered item: ";
+
+        if (product != null) {
+            format += product.getName();
+        }
+        else {
+            format += "Deleted item";
+        }
+
+        format += "\nOrder ID: " + id + "\nOrdered date (dd/mm/yyyy): " + day + "/" + month + "/" + year
+        + "\nQuantity purchased: " + qty + "\nPrice before tax: " + price + "\nPrice after tax: " + (price * (1 + 0.01 * TAX));
+        return format; 
     }
 }
