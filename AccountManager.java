@@ -114,7 +114,7 @@ public class AccountManager {
         int right = getMinRight(rc[cur]); 
         if (left == 0) left = cur;
         if (right == 0) right = cur;
-        
+
         if (left != cur && (accounts[left].getName().compareTo(accounts[right].getName()) > 0 || right == cur)) {
             accounts[cur] = accounts[left];
             accounts[left] = null;    
@@ -204,7 +204,7 @@ public class AccountManager {
     
         return false;
     }
-    private void testDisplay() {
+    /*private void testDisplay() {
         for (int i = 0; i < currentAccountNum; i++) {
             System.out.println(accounts[i].getName() + " " + i + " " + lc[i] + " " + rc[i]);
         }
@@ -217,53 +217,53 @@ public class AccountManager {
      * The method saves the accounts to a file. 
      */
     public boolean saveToFile(String fileName){
-            testDisplay();
+            //testDisplay();
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
                 writer.write("" + currentAccountNum);
                 writer.newLine();
 
                 // Save information of all orders to file
-                for (int i = 0; i < currentAccountNum; i++) {
+                for (int i = 0; i < maxAccounts; i++) {
                     Account cur = accounts[i];
-                    
-                    if(cur instanceof Employee){
-                        writer.write("1");
-                        writer.newLine();
-                        writer.write(cur.getName());
-                        writer.newLine();                        
-                        writer.write(cur.getPassword());
-                        writer.newLine();                        
-                        writer.write(""+cur.getBalance());
-                        writer.newLine();
-                    }
-                    else{
-                        writer.write("0");
-                        writer.newLine();
-                        writer.write(cur.getName());
-                        writer.newLine();                        
-                        writer.write(cur.getPassword());
-                        writer.newLine();                        
-                        writer.write(""+cur.getBalance());
-                        writer.newLine();
-                        Membership mbr = ((Customer)cur).getMembership();
-                        if(mbr == null){
-                            writer.write("false");
+                    if (cur != null) {
+                        if(cur instanceof Employee){
+                            writer.write("1");
+                            writer.newLine();
+                            writer.write(cur.getName());
+                            writer.newLine();                        
+                            writer.write(cur.getPassword());
+                            writer.newLine();                        
+                            writer.write(""+cur.getBalance());
                             writer.newLine();
                         }
                         else{
-                            writer.write("true");
-                            writer.newLine();                            
-                            writer.write(""+mbr.getIssueDay());
-                            writer.newLine();                            
-                            writer.write(""+mbr.getIssueMonth());
-                            writer.newLine();                            
-                            writer.write(""+mbr.getIssueYear());
+                            writer.write("0");
                             writer.newLine();
+                            writer.write(cur.getName());
+                            writer.newLine();                        
+                            writer.write(cur.getPassword());
+                            writer.newLine();                        
+                            writer.write(""+cur.getBalance());
+                            writer.newLine();
+                            Membership mbr = ((Customer)cur).getMembership();
+                            if(mbr == null){
+                                writer.write("false");
+                                writer.newLine();
+                            }
+                            else{
+                                writer.write("true");
+                                writer.newLine();                            
+                                writer.write(""+mbr.getIssueDay());
+                                writer.newLine();                            
+                                writer.write(""+mbr.getIssueMonth());
+                                writer.newLine();                            
+                                writer.write(""+mbr.getIssueYear());
+                                writer.newLine();
 
+                            }
                         }
                     }
-                   
                 }
                 writer.close();
 
