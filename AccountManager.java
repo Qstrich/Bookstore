@@ -135,9 +135,17 @@ public class AccountManager {
         if (rc[cur] != 0) return getMaxLeft(rc[cur]);
         return cur;
     }
-
+    
+    /*
+     * boolean loadFromFile(String fileName)
+     * Return boolean - Returns if file was loaded properly. 
+     * 
+     * String fileName - name of the file to load
+     * The method loads in the accounts from a file. 
+     */
     public boolean loadFromFile(String fileName){
-        int type;
+        //Info for each account
+        int type; //0 is customer, 1 is employee
         String name;
         String password;
         double balance;
@@ -199,7 +207,13 @@ public class AccountManager {
             System.out.println(accounts[i].getName() + " " + i + " " + lc[i] + " " + rc[i]);
         }
     }
-
+    /*
+     * boolean saveToFile(String fileName)
+     * Return boolean - Returns if file was saved properly. 
+     * 
+     * String fileName - name of the file to save
+     * The method saves the accounts to a file. 
+     */
     public boolean saveToFile(String fileName){
             testDisplay();
             try {
@@ -259,7 +273,12 @@ public class AccountManager {
          
         return false;
     }
-
+    /*
+     * String toString()
+     * Return String - Formatted string containing field information. 
+     * 
+     * The method returns the fields of the accountManager in a formatted string. 
+     */
     public String toString() {
         String format = "\nCurrent number of accounts: " + currentAccountNum + "\nMaximum number of accounts: " + maxAccounts;
         for (int i = 0; i < currentAccountNum; i++) {
