@@ -143,7 +143,7 @@
      * double totalCost()
      * Return double - Total calculated costs including any account discounts but excluding tax. 
      * 
-     * The method calculates the total cost of the order before tax. Only works if product and buyer are not null. 
+     * The method calculates the total cost of the order before tax.
      */
     public double totalCost() {
         if (product != null && buyer != null) {
@@ -156,7 +156,7 @@
      * String toString()
      * Return String - Formatted string containing field information. 
      * 
-     * The method returns the fields of the order in a formatted string. Only works if product and buyer are not null. 
+     * The method returns the fields of the order in a formatted string. 
      */
     public String toString() {
         String format = "Ordered by: ";
