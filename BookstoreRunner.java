@@ -75,6 +75,9 @@ public class BookstoreRunner {
                                 System.out.print("\nUsername already used. ");
                             }
                         }
+                        else {
+                            System.out.print("\nInvalid account type.");
+                        }
                         
                         break;
 
@@ -201,15 +204,21 @@ public class BookstoreRunner {
                             
                             System.out.print("\nEnter item number: ");
                             itemNum = enterInt();
-                            
-                            store.selectItem(itemNum);
 
-                            // Print message if item was properly selected
-                            if (store.getSelectedItem() == null) {
-                                System.out.print("\nNo item selected. ");
+                            if(itemNum > 0 && itemNum <= store.getItemlist().getCurrentItemNum()){
+                                
+                                store.selectItem(itemNum);
+    
+                                // Print message if item was properly selected
+                                if (store.getSelectedItem() == null) {
+                                    System.out.print("\nNo item selected. ");
+                                }
+                                else {
+                                    System.out.print("\nItem selected. ");
+                                }
                             }
-                            else {
-                                System.out.print("\nItem selected. ");
+                            else{
+                                System.out.println("Cannont enter this number");
                             }
                             break;
 
