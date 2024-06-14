@@ -205,7 +205,7 @@ public class BookstoreRunner {
                             System.out.print("\nEnter item number: ");
                             itemNum = enterInt();
 
-                            if(itemNum > 0 && itemNum <= store.getItemlist().getCurrentItemNum()){
+                            if(itemNum > 0 && itemNum <= store.getItemList().getCurrentItemNum()){
                                 
                                 store.selectItem(itemNum);
     
