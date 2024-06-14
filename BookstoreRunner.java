@@ -27,7 +27,7 @@ public class BookstoreRunner {
         // Loop menus until close program option is selected. 
         while (!exit) {
 
-            //System.out.println(store); // Delete after testing
+            System.out.println(store); // Delete after testing
             System.out.println("\n\n___________________________________________________________\n\n");
             // Login menu
             if (store.getCurrentUser() == null) {
@@ -233,7 +233,7 @@ public class BookstoreRunner {
 
                             System.out.print("\nEnter order history number to open its item: ");
                             historyNum = enterInt();
-                            if(historyNum > 0 && historyNum <= store.getCurrentAccount().getCurrentOrderHistory()){
+                            if(historyNum > 0 && historyNum <= store.getCurrentUser().getCurrentOrderHistory()){
                                 store.openItemInHistory(historyNum);
                             }
                             else{
