@@ -75,6 +75,9 @@ public class BookstoreRunner {
                                 System.out.print("\nUsername already used. ");
                             }
                         }
+                        else {
+                            System.out.print("\nInvalid account type.");
+                        }
                         
                         break;
 
@@ -201,15 +204,21 @@ public class BookstoreRunner {
                             
                             System.out.print("\nEnter item number: ");
                             itemNum = enterInt();
-                            
-                            store.selectItem(itemNum);
 
-                            // Print message if item was properly selected
-                            if (store.getSelectedItem() == null) {
-                                System.out.print("\nNo item selected. ");
+                            if(itemNum > 0 && itemNum <= store.getItemList().getCurrentItemNum()){
+                                
+                                store.selectItem(itemNum);
+    
+                                // Print message if item was properly selected
+                                if (store.getSelectedItem() == null) {
+                                    System.out.print("\nNo item selected. ");
+                                }
+                                else {
+                                    System.out.print("\nItem selected. ");
+                                }
                             }
-                            else {
-                                System.out.print("\nItem selected. ");
+                            else{
+                                System.out.println("Cannont enter this number");
                             }
                             break;
 
@@ -224,9 +233,12 @@ public class BookstoreRunner {
 
                             System.out.print("\nEnter order history number to open its item: ");
                             historyNum = enterInt();
-
-                            store.openItemInHistory(historyNum);
-
+                            if(historyNum > 0 && historyNum <= store.getCurrentAccount().getCurrentOrderHistory()){
+                                store.openItemInHistory(historyNum);
+                            }
+                            else{
+                                System.out.println("Invalid input");
+                            }
                             break;
                         
                         // Save bookstore information to file
@@ -241,6 +253,9 @@ public class BookstoreRunner {
                                 int issueDay, issueMonth, issueYear;
 
                                 // Get inputs for membership information
+                                System.out.println("\n" + BronzeMember.DESCRIPTION);
+                                System.out.println(SilverMember.DESCRIPTION);
+                                System.out.println(GoldMember.DESCRIPTION);
                                 System.out.print("\nEnter membership tier (1 for Bronze, 2 for Silver, 3 for Gold): ");
                                 membershipLevel = enterInt();
                                 System.out.print("Enter today's day: ");

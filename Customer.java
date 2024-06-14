@@ -56,7 +56,7 @@ public class Customer extends Account {
      * The method returns a formatted string containing all fields of this Customer. 
      */
     public String toString(){
-        return super.toString() + "\nDiscount: "+ getDiscount();
+        return super.toString() + "\nDiscount: "+ getDiscount() + "\nMembership: " + membership;
     }
 
 
