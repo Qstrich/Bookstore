@@ -241,6 +241,9 @@ public class BookstoreRunner {
                                 int issueDay, issueMonth, issueYear;
 
                                 // Get inputs for membership information
+                                System.out.println("\n" + BronzeMember.DESCRIPTION);
+                                System.out.println(SilverMember.DESCRIPTION);
+                                System.out.println(GoldMember.DESCRIPTION);
                                 System.out.print("\nEnter membership tier (1 for Bronze, 2 for Silver, 3 for Gold): ");
                                 membershipLevel = enterInt();
                                 System.out.print("Enter today's day: ");
